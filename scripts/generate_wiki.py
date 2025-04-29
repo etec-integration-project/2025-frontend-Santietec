@@ -203,7 +203,7 @@ def generate_wiki_content(wiki_dir: Path, data_dir: Path):
     try:
         # Home.md
         with open(wiki_dir / 'Home.md', 'w', encoding='utf-8') as f:
-            f.write("""# UM Tesorería MercadoPago Service Wiki
+            f.write("""# Santiago Marthi Wiki
 
 Bienvenido a la Wiki del servicio de integración con MercadoPago de UM Tesorería.
 
