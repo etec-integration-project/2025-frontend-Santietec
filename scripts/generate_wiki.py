@@ -205,7 +205,7 @@ def generate_wiki_content(wiki_dir: Path, data_dir: Path):
         with open(wiki_dir / 'Home.md', 'w', encoding='utf-8') as f:
             f.write("""# Santiago Marthi Wiki
 
-Bienvenido a la Wiki del servicio de integración con MercadoPago de UM Tesorería.
+Bienvenido a la Wiki de Santiago Marthi
 
 ## Navegación Rápida
 
