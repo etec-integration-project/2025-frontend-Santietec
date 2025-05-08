@@ -2,14 +2,13 @@
 layout: default
 ---
 
-# UM Tesorería MercadoPago Service
+# Netflis 🎬
 
-Bienvenido a la documentación del servicio de MercadoPago de UM Tesorería.
+Bienvenido a la documentación de Netflis, una plataforma moderna de streaming de películas y series.
 
 ## Descripción
 
-Este es el servicio de integración con MercadoPago para la arquitectura de microservicios de UM Tesorería. 
-Proporciona funcionalidades para procesar pagos, gestionar preferencias de pago y manejar webhooks de MercadoPago.
+Netflis es una plataforma de streaming desarrollada con tecnologías de vanguardia que ofrece una experiencia de usuario excepcional. Proporciona un catálogo completo de películas y series, sistema de usuarios y perfiles personalizados, y streaming de contenido en alta calidad.
 
 ## Navegación
 
@@ -18,12 +17,26 @@ Proporciona funcionalidades para procesar pagos, gestionar preferencias de pago 
   - Lista de Issues activos y cerrados
   - Historial de cambios
 
-## Estado del Proyecto
+## Stack Tecnológico
 
-El estado actual del proyecto y sus avances se pueden consultar en la [Documentación Detallada](project-documentation.html).
+### Backend
+- Node.js 18.x
+- Express 4.x
+- MySQL 8.x
+
+### Frontend
+- React 18.x
+- TypeScript 5.x
+- Vite 5.x
+- Tailwind CSS 3.x
+
+### DevOps & Herramientas
+- Docker 24.x
+- Git 2.x
 
 ## Enlaces Útiles
 
-- [Repositorio en GitHub](https://github.com/UM-services/UM.tesoreria.mercadopago-service)
-- [Wiki del Proyecto](https://github.com/UM-services/UM.tesoreria.mercadopago-service/wiki)
-- [Documentación de MercadoPago](https://www.mercadopago.com.ar/developers/es/reference) 
+- [Repositorio en GitHub](https://github.com/etec-integration-project/2025-frontend-Santietec)
+- [Documentación de React](https://react.dev/)
+- [Documentación de Vite](https://vitejs.dev/)
+- [Documentación de Tailwind CSS](https://tailwindcss.com/) 
