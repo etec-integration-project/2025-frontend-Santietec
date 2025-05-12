@@ -29,7 +29,7 @@ const HeroVideo = ({ title, description, onPlay }: HeroVideoProps) => {
         playsInline
       >
         <source 
-          src="/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4" 
+          src="/El Sorprendente Hombre Araña - Tráiler.mp4"
           type="video/mp4"
         />
       </video>

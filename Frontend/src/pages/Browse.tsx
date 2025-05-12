@@ -94,7 +94,7 @@ const Browse = () => {
       year: 2014,
       genres: ["Acción", "Thriller"],
       match: 95,
-      videoUrl: "./Frontend/public/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 2,
@@ -105,7 +105,7 @@ const Browse = () => {
       year: 2015,
       genres: ["Acción", "Aventura"],
       match: 97,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 101,
@@ -116,7 +116,7 @@ const Browse = () => {
       year: 2019,
       genres: ["Acción", "Ciencia ficción"],
       match: 95,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 102,
@@ -127,7 +127,7 @@ const Browse = () => {
       year: 2001,
       genres: ["Acción", "Drama"],
       match: 94,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 103,
@@ -138,7 +138,7 @@ const Browse = () => {
       year: 2015,
       genres: ["Acción", "Crimen"],
       match: 96,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
 
@@ -152,7 +152,7 @@ const Browse = () => {
       year: 2007,
       genres: ["Comedia"],
       match: 92,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 7,
@@ -163,7 +163,7 @@ const Browse = () => {
       year: 2009,
       genres: ["Comedia"],
       match: 93,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 106,
@@ -174,7 +174,7 @@ const Browse = () => {
       year: 1994,
       genres: ["Comedia", "Romance"],
       match: 96,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 107,
@@ -185,7 +185,7 @@ const Browse = () => {
       year: 2005,
       genres: ["Comedia"],
       match: 94,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 108,
@@ -196,7 +196,7 @@ const Browse = () => {
       year: 2013,
       genres: ["Comedia", "Crimen"],
       match: 95,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
 
@@ -210,7 +210,7 @@ const Browse = () => {
       year: 1994,
       genres: ["Drama"],
       match: 98,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 12,
@@ -221,7 +221,7 @@ const Browse = () => {
       year: 1972,
       genres: ["Drama", "Crimen"],
       match: 99,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 111,
@@ -232,7 +232,7 @@ const Browse = () => {
       year: 2008,
       genres: ["Drama", "Crimen"],
       match: 98,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 112,
@@ -243,7 +243,7 @@ const Browse = () => {
       year: 2016,
       genres: ["Drama", "Historia"],
       match: 95,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 113,
@@ -254,7 +254,7 @@ const Browse = () => {
       year: 2017,
       genres: ["Drama", "Ciencia ficción"],
       match: 95,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
 
@@ -268,7 +268,7 @@ const Browse = () => {
       year: 2013,
       genres: ["Terror", "Suspenso"],
       match: 95,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 17,
@@ -279,7 +279,7 @@ const Browse = () => {
       year: 2018,
       genres: ["Terror", "Drama"],
       match: 93,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 116,
@@ -290,7 +290,7 @@ const Browse = () => {
       year: 2011,
       genres: ["Terror", "Drama"],
       match: 94,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 117,
@@ -301,7 +301,7 @@ const Browse = () => {
       year: 2010,
       genres: ["Terror", "Drama"],
       match: 92,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 118,
@@ -312,7 +312,7 @@ const Browse = () => {
       year: 2016,
       genres: ["Terror", "Ciencia ficción"],
       match: 96,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
 
@@ -326,7 +326,7 @@ const Browse = () => {
       year: 2017,
       genres: ["Ciencia ficción", "Drama"],
       match: 96,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 22,
@@ -337,7 +337,7 @@ const Browse = () => {
       year: 2014,
       genres: ["Ciencia ficción", "Drama"],
       match: 97,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 121,
@@ -348,7 +348,7 @@ const Browse = () => {
       year: 2011,
       genres: ["Ciencia ficción", "Drama"],
       match: 96,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 122,
@@ -359,7 +359,7 @@ const Browse = () => {
       year: 2015,
       genres: ["Ciencia ficción", "Drama"],
       match: 95,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
       id: 123,
@@ -370,7 +370,7 @@ const Browse = () => {
       year: 2016,
       genres: ["Ciencia ficción", "Drama"],
       match: 94,
-      videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+      videoUrl: "/SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
 
