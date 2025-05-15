@@ -139,6 +139,66 @@ const Movies = () => {
       match: 94,
       description: "Un exagente de la CIA rastrea a su hija secuestrada en Europa.",
       videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 26,
+      title: "John Wick",
+      image: "/movies/john-wick.jpg",
+      duration: "1h 41m",
+      rating: "16+",
+      year: 2014,
+      genres: ["Acción", "Thriller"],
+      match: 95,
+      description: "Un exasesino busca venganza tras la muerte de su perro y el robo de su auto.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 27,
+      title: "Die Hard",
+      image: "/movies/die-hard.jpg",
+      duration: "2h 12m",
+      rating: "16+",
+      year: 1988,
+      genres: ["Acción", "Thriller"],
+      match: 96,
+      description: "Un policía lucha contra terroristas en un edificio de oficinas durante una fiesta de Navidad.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 28,
+      title: "The Raid",
+      image: "/movies/the-raid.jpg",
+      duration: "1h 41m",
+      rating: "16+",
+      year: 2011,
+      genres: ["Acción", "Crimen"],
+      match: 94,
+      description: "Un equipo SWAT debe luchar para salir de un edificio controlado por un señor del crimen.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 29,
+      title: "Mission: Impossible - Fallout",
+      image: "/movies/mission-impossible.jpg",
+      duration: "2h 27m",
+      rating: "13+",
+      year: 2018,
+      genres: ["Acción", "Aventura"],
+      match: 95,
+      description: "Ethan Hunt y su equipo deben prevenir una catástrofe global mientras son perseguidos por la CIA.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 30,
+      title: "The Equalizer",
+      image: "/movies/equalizer.jpg",
+      duration: "2h 12m",
+      rating: "16+",
+      year: 2014,
+      genres: ["Acción", "Thriller"],
+      match: 93,
+      description: "Un exagente de operaciones especiales ayuda a personas en problemas mientras lucha contra el crimen organizado.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
 
@@ -201,6 +261,66 @@ const Movies = () => {
       genres: ["Comedia"],
       match: 90,
       description: "Un joven excéntrico ayuda a su amigo a ganar la presidencia del consejo estudiantil.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 31,
+      title: "Bridesmaids",
+      image: "/movies/bridesmaids.jpg",
+      duration: "2h 5m",
+      rating: "16+",
+      year: 2011,
+      genres: ["Comedia", "Romance"],
+      match: 93,
+      description: "Una dama de honor intenta superar sus problemas personales mientras organiza la boda de su mejor amiga.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 32,
+      title: "The Grand Budapest Hotel",
+      image: "/movies/grand-budapest.jpg",
+      duration: "1h 39m",
+      rating: "13+",
+      year: 2014,
+      genres: ["Comedia", "Aventura"],
+      match: 95,
+      description: "Las aventuras de un conserje y su aprendiz en un famoso hotel europeo entre guerras.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 33,
+      title: "21 Jump Street",
+      image: "/movies/21-jump-street.jpg",
+      duration: "1h 49m",
+      rating: "16+",
+      year: 2012,
+      genres: ["Comedia", "Acción"],
+      match: 92,
+      description: "Dos policías jóvenes se infiltran en un instituto para desmantelar una red de drogas.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 34,
+      title: "The Lego Movie",
+      image: "/movies/lego-movie.jpg",
+      duration: "1h 40m",
+      rating: "7+",
+      year: 2014,
+      genres: ["Comedia", "Animación", "Aventura"],
+      match: 96,
+      description: "Un constructor de LEGO es confundido con el héroe que puede salvar el universo LEGO.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 35,
+      title: "Scott Pilgrim vs. the World",
+      image: "/movies/scott-pilgrim.jpg",
+      duration: "1h 52m",
+      rating: "13+",
+      year: 2010,
+      genres: ["Comedia", "Acción", "Romance"],
+      match: 91,
+      description: "Un joven músico debe derrotar a los siete ex novios de su nueva novia.",
       videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
@@ -265,6 +385,66 @@ const Movies = () => {
       match: 96,
       description: "La historia real de un hombre libre capturado y vendido como esclavo en el siglo XIX.",
       videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 36,
+      title: "The Godfather",
+      image: "/movies/godfather.jpg",
+      duration: "2h 55m",
+      rating: "16+",
+      year: 1972,
+      genres: ["Drama", "Crimen"],
+      match: 99,
+      description: "La saga de una familia mafiosa italiana en Nueva York durante los años 40.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 37,
+      title: "Schindler's List",
+      image: "/movies/schindlers-list.jpg",
+      duration: "3h 15m",
+      rating: "16+",
+      year: 1993,
+      genres: ["Drama", "Historia", "Biografía"],
+      match: 98,
+      description: "Un empresario alemán salva a más de mil judíos durante el Holocausto.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 38,
+      title: "The Green Mile",
+      image: "/movies/green-mile.jpg",
+      duration: "3h 9m",
+      rating: "16+",
+      year: 1999,
+      genres: ["Drama", "Crimen", "Fantasía"],
+      match: 97,
+      description: "La vida de un guardia de prisión y un preso con habilidades sobrenaturales.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 39,
+      title: "The Social Network",
+      image: "/movies/social-network.jpg",
+      duration: "2h",
+      rating: "13+",
+      year: 2010,
+      genres: ["Drama", "Biografía"],
+      match: 95,
+      description: "La historia de la creación de Facebook y las disputas legales que siguieron.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 40,
+      title: "The Prestige",
+      image: "/movies/prestige.jpg",
+      duration: "2h 10m",
+      rating: "13+",
+      year: 2006,
+      genres: ["Drama", "Misterio", "Thriller"],
+      match: 96,
+      description: "Dos magos rivales se obsesionan con crear el truco perfecto en la Inglaterra victoriana.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
 
@@ -328,6 +508,66 @@ const Movies = () => {
       match: 92,
       description: "Un sacerdote lucha contra una poderosa posesión demoníaca en una niña.",
       videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 41,
+      title: "Get Out",
+      image: "/movies/get-out.jpg",
+      duration: "1h 44m",
+      rating: "16+",
+      year: 2017,
+      genres: ["Terror", "Misterio", "Thriller"],
+      match: 98,
+      description: "Un joven afroamericano descubre un secreto perturbador durante una visita a la familia de su novia.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 42,
+      title: "The Babadook",
+      image: "/movies/babadook.jpg",
+      duration: "1h 34m",
+      rating: "16+",
+      year: 2014,
+      genres: ["Terror", "Drama", "Misterio"],
+      match: 94,
+      description: "Una madre y su hijo son atormentados por un monstruo de un libro infantil.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 43,
+      title: "The Witch",
+      image: "/movies/witch.jpg",
+      duration: "1h 32m",
+      rating: "16+",
+      year: 2015,
+      genres: ["Terror", "Drama", "Historia"],
+      match: 93,
+      description: "Una familia puritana del siglo XVII enfrenta fuerzas sobrenaturales en el bosque.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 44,
+      title: "Midsommar",
+      image: "/movies/midsommar.jpg",
+      duration: "2h 27m",
+      rating: "16+",
+      year: 2019,
+      genres: ["Terror", "Drama", "Misterio"],
+      match: 95,
+      description: "Una pareja viaja a un festival sueco que se vuelve cada vez más perturbador.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 45,
+      title: "The Lighthouse",
+      image: "/movies/lighthouse.jpg",
+      duration: "1h 49m",
+      rating: "16+",
+      year: 2019,
+      genres: ["Terror", "Drama", "Misterio"],
+      match: 92,
+      description: "Dos fareros en una isla remota comienzan a perder la cordura.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
 
@@ -390,6 +630,66 @@ const Movies = () => {
       genres: ["Ciencia ficción", "Acción", "Thriller"],
       match: 97,
       description: "Un ladrón de sueños acepta una misión para plantar una idea en la mente de un magnate.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 46,
+      title: "Ex Machina",
+      image: "/movies/ex-machina.jpg",
+      duration: "1h 48m",
+      rating: "16+",
+      year: 2014,
+      genres: ["Ciencia ficción", "Drama", "Thriller"],
+      match: 95,
+      description: "Un programador es invitado a evaluar la inteligencia artificial de un robot humanoide.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 47,
+      title: "Her",
+      image: "/movies/her.jpg",
+      duration: "2h 6m",
+      rating: "13+",
+      year: 2013,
+      genres: ["Ciencia ficción", "Drama", "Romance"],
+      match: 96,
+      description: "Un hombre solitario desarrolla una relación con un sistema operativo con inteligencia artificial.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 48,
+      title: "District 9",
+      image: "/movies/district-9.jpg",
+      duration: "1h 52m",
+      rating: "16+",
+      year: 2009,
+      genres: ["Ciencia ficción", "Acción", "Drama"],
+      match: 93,
+      description: "Un funcionario gubernamental se transforma en un alienígena mientras intenta reubicar a refugiados extraterrestres.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 49,
+      title: "Looper",
+      image: "/movies/looper.jpg",
+      duration: "1h 59m",
+      rating: "16+",
+      year: 2012,
+      genres: ["Ciencia ficción", "Acción", "Thriller"],
+      match: 94,
+      description: "Un asesino del futuro debe eliminar a su yo del pasado para cerrar un bucle temporal.",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 50,
+      title: "Children of Men",
+      image: "/movies/children-of-men.jpg",
+      duration: "1h 49m",
+      rating: "16+",
+      year: 2006,
+      genres: ["Ciencia ficción", "Drama", "Thriller"],
+      match: 95,
+      description: "En un mundo donde la humanidad se ha vuelto estéril, un hombre protege a la última mujer embarazada.",
       videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];

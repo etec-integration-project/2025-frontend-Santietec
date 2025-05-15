@@ -146,6 +146,71 @@ const TVShows = () => {
       description: "Sigue las aventuras del legendario Ragnar Lothbrok y sus conquistas vikingas.",
       seasons: "6 Temporadas",
       videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 26,
+      title: "The Boys",
+      image: "/shows/the-boys.jpg",
+      duration: "60m",
+      rating: "16+",
+      year: 2019,
+      genres: ["Acción", "Ciencia ficción", "Drama"],
+      match: 97,
+      description: "Un grupo de vigilantes lucha contra superhéroes corruptos que abusan de sus poderes.",
+      seasons: "3 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 27,
+      title: "Peaky Blinders",
+      image: "/shows/peaky-blinders.jpg",
+      duration: "60m",
+      rating: "16+",
+      year: 2013,
+      genres: ["Acción", "Drama", "Crimen"],
+      match: 96,
+      description: "Una familia de gánsteres en Birmingham, Inglaterra, después de la Primera Guerra Mundial.",
+      seasons: "6 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 28,
+      title: "The Punisher",
+      image: "/shows/punisher.jpg",
+      duration: "55m",
+      rating: "16+",
+      year: 2017,
+      genres: ["Acción", "Drama", "Crimen"],
+      match: 95,
+      description: "Un veterano de guerra busca venganza por la muerte de su familia.",
+      seasons: "2 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 29,
+      title: "Banshee",
+      image: "/shows/banshee.jpg",
+      duration: "60m",
+      rating: "16+",
+      year: 2013,
+      genres: ["Acción", "Drama", "Crimen"],
+      match: 94,
+      description: "Un exconvicto se hace pasar por un sheriff en una pequeña ciudad de Pensilvania.",
+      seasons: "4 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 30,
+      title: "Warrior",
+      image: "/shows/warrior.jpg",
+      duration: "60m",
+      rating: "16+",
+      year: 2019,
+      genres: ["Acción", "Drama", "Crimen"],
+      match: 93,
+      description: "Un inmigrante chino en San Francisco se ve envuelto en las guerras de las bandas de Chinatown.",
+      seasons: "3 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
   
@@ -213,6 +278,71 @@ const TVShows = () => {
       match: 92,
       description: "Un hombre cuenta a sus hijos cómo conoció a su madre a través de anécdotas divertidas y emotivas.",
       seasons: "9 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 31,
+      title: "Community",
+      image: "/shows/community.jpg",
+      duration: "22m",
+      rating: "13+",
+      year: 2009,
+      genres: ["Comedia"],
+      match: 94,
+      description: "Un grupo diverso de estudiantes forma una comunidad en un colegio comunitario.",
+      seasons: "6 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 32,
+      title: "Arrested Development",
+      image: "/shows/arrested-development.jpg",
+      duration: "22m",
+      rating: "13+",
+      year: 2003,
+      genres: ["Comedia"],
+      match: 95,
+      description: "Una familia disfuncional intenta mantener su fortuna después de que el padre es encarcelado.",
+      seasons: "5 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 33,
+      title: "It's Always Sunny in Philadelphia",
+      image: "/shows/always-sunny.jpg",
+      duration: "22m",
+      rating: "16+",
+      year: 2005,
+      genres: ["Comedia"],
+      match: 93,
+      description: "Cinco amigos egoístas dirigen un bar en Filadelfia y se meten en todo tipo de problemas.",
+      seasons: "15 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 34,
+      title: "The Good Place",
+      image: "/shows/good-place.jpg",
+      duration: "22m",
+      rating: "13+",
+      year: 2016,
+      genres: ["Comedia", "Fantasía"],
+      match: 96,
+      description: "Una mujer es enviada por error al cielo y debe ocultar su verdadera naturaleza.",
+      seasons: "4 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 35,
+      title: "Schitt's Creek",
+      image: "/shows/schitts-creek.jpg",
+      duration: "22m",
+      rating: "13+",
+      year: 2015,
+      genres: ["Comedia"],
+      match: 95,
+      description: "Una familia rica pierde su fortuna y debe vivir en un pequeño pueblo que compraron como broma.",
+      seasons: "6 Temporadas",
       videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
@@ -282,6 +412,71 @@ const TVShows = () => {
       description: "Una poderosa familia lucha por el control de su imperio mediático.",
       seasons: "4 Temporadas",
       videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 36,
+      title: "Mad Men",
+      image: "/shows/mad-men.jpg",
+      duration: "45m",
+      rating: "16+",
+      year: 2007,
+      genres: ["Drama", "Historia"],
+      match: 97,
+      description: "La vida de los ejecutivos de una agencia de publicidad en la Nueva York de los años 60.",
+      seasons: "7 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 37,
+      title: "Better Call Saul",
+      image: "/shows/better-call-saul.jpg",
+      duration: "45m",
+      rating: "16+",
+      year: 2015,
+      genres: ["Drama", "Crimen"],
+      match: 96,
+      description: "La transformación de Jimmy McGill en el abogado criminal Saul Goodman.",
+      seasons: "6 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 38,
+      title: "The Wire",
+      image: "/shows/the-wire.jpg",
+      duration: "60m",
+      rating: "16+",
+      year: 2002,
+      genres: ["Drama", "Crimen"],
+      match: 98,
+      description: "Una mirada cruda a la vida en Baltimore a través de las perspectivas de policías y criminales.",
+      seasons: "5 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 39,
+      title: "This Is Us",
+      image: "/shows/this-is-us.jpg",
+      duration: "45m",
+      rating: "13+",
+      year: 2016,
+      genres: ["Drama"],
+      match: 95,
+      description: "La vida de varios miembros de una familia a lo largo de diferentes períodos de tiempo.",
+      seasons: "6 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 40,
+      title: "The Leftovers",
+      image: "/shows/leftovers.jpg",
+      duration: "60m",
+      rating: "16+",
+      year: 2014,
+      genres: ["Drama", "Misterio"],
+      match: 94,
+      description: "La vida de las personas que quedan después de que el 2% de la población mundial desaparece.",
+      seasons: "3 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
   
@@ -350,6 +545,71 @@ const TVShows = () => {
       description: "Iconos del terror como Drácula y Frankenstein convergen en una sombría Londres victoriana.",
       seasons: "3 Temporadas",
       videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 41,
+      title: "The Haunting of Bly Manor",
+      image: "/shows/bly-manor.jpg",
+      duration: "50m",
+      rating: "16+",
+      year: 2020,
+      genres: ["Horror", "Drama", "Misterio"],
+      match: 94,
+      description: "Una joven institutriz cuida a dos niños en una mansión embrujada en Inglaterra.",
+      seasons: "1 Temporada",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 42,
+      title: "Midnight Mass",
+      image: "/shows/midnight-mass.jpg",
+      duration: "60m",
+      rating: "16+",
+      year: 2021,
+      genres: ["Horror", "Drama", "Misterio"],
+      match: 95,
+      description: "Una isla aislada experimenta eventos sobrenaturales tras la llegada de un misterioso sacerdote.",
+      seasons: "1 Temporada",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 43,
+      title: "The Terror",
+      image: "/shows/terror.jpg",
+      duration: "60m",
+      rating: "16+",
+      year: 2018,
+      genres: ["Horror", "Drama", "Historia"],
+      match: 93,
+      description: "Una expedición ártica se enfrenta a una misteriosa amenaza en el siglo XIX.",
+      seasons: "2 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 44,
+      title: "Castle Rock",
+      image: "/shows/castle-rock.jpg",
+      duration: "60m",
+      rating: "16+",
+      year: 2018,
+      genres: ["Horror", "Drama", "Misterio"],
+      match: 92,
+      description: "Historias interconectadas ambientadas en el universo de Stephen King.",
+      seasons: "2 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 45,
+      title: "The Outsider",
+      image: "/shows/outsider.jpg",
+      duration: "60m",
+      rating: "16+",
+      year: 2020,
+      genres: ["Horror", "Drama", "Misterio"],
+      match: 94,
+      description: "Un detective investiga un brutal asesinato que parece tener explicaciones sobrenaturales.",
+      seasons: "1 Temporada",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
   
@@ -417,6 +677,71 @@ const TVShows = () => {
       match: 92,
       description: "Un equipo investiga fenómenos paranormales mientras lidia con un universo alterno.",
       seasons: "5 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 46,
+      title: "Altered Carbon",
+      image: "/shows/altered-carbon.jpg",
+      duration: "60m",
+      rating: "16+",
+      year: 2018,
+      genres: ["Ciencia ficción", "Acción", "Drama"],
+      match: 93,
+      description: "En un futuro donde la conciencia puede transferirse a nuevos cuerpos, un soldado resuelve un asesinato.",
+      seasons: "2 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 47,
+      title: "Dark",
+      image: "/shows/dark.jpg",
+      duration: "60m",
+      rating: "16+",
+      year: 2017,
+      genres: ["Ciencia ficción", "Drama", "Misterio"],
+      match: 96,
+      description: "La desaparición de dos niños expone los secretos y conexiones entre cuatro familias en un pequeño pueblo alemán.",
+      seasons: "3 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 48,
+      title: "Battlestar Galactica",
+      image: "/shows/battlestar.jpg",
+      duration: "45m",
+      rating: "16+",
+      year: 2004,
+      genres: ["Ciencia ficción", "Drama", "Acción"],
+      match: 95,
+      description: "Los últimos humanos supervivientes buscan un nuevo hogar mientras son perseguidos por robots asesinos.",
+      seasons: "4 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 49,
+      title: "Orphan Black",
+      image: "/shows/orphan-black.jpg",
+      duration: "45m",
+      rating: "16+",
+      year: 2013,
+      genres: ["Ciencia ficción", "Drama", "Thriller"],
+      match: 94,
+      description: "Una mujer descubre que es un clon y se ve envuelta en una conspiración global.",
+      seasons: "5 Temporadas",
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 50,
+      title: "The Man in the High Castle",
+      image: "/shows/high-castle.jpg",
+      duration: "60m",
+      rating: "16+",
+      year: 2015,
+      genres: ["Ciencia ficción", "Drama", "Alternativa"],
+      match: 93,
+      description: "Una historia alternativa donde los nazis y los japoneses ganaron la Segunda Guerra Mundial.",
+      seasons: "4 Temporadas",
       videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];

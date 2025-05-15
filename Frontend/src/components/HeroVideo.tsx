@@ -68,4 +68,4 @@ const HeroVideo = ({ title, description, onPlay }: HeroVideoProps) => {
   );
 };
 
-export default HeroVideo; 
+export default HeroVideo;

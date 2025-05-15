@@ -1,30 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { Search, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { searchContent } from '../services/search.service';
+
+interface SearchResult {
+  id: number;
+  title: string;
+  type: 'movie' | 'tv-show';
+  image: string;
+  description?: string;
+}
 
 const SearchModal = ({ onClose }: { onClose: () => void }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<SearchResult[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const mockResults = [
-    { id: 1, title: 'Stranger Things', type: 'TV Show', image: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=500' },
-    { id: 2, title: 'The Crown', type: 'TV Show', image: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=500' },
-  ];
-
   useEffect(() => {
-    if (searchTerm.length > 2) {
-      // Simulate API call
-      setResults(mockResults.filter(item => 
-        item.title.toLowerCase().includes(searchTerm.toLowerCase())
-      ));
-    } else {
-      setResults([]);
-    }
+    const searchTimeout = setTimeout(async () => {
+      if (searchTerm.length > 2) {
+        setIsLoading(true);
+        try {
+          const searchResults = await searchContent(searchTerm);
+          setResults(searchResults);
+        } catch (error) {
+          console.error('Error searching:', error);
+          setResults([]);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        setResults([]);
+      }
+    }, 300);
+
+    return () => clearTimeout(searchTimeout);
   }, [searchTerm]);
 
-  const handleResultClick = (result: any) => {
-    navigate(`/watch/${result.id}`);
+  const handleResultClick = (result: SearchResult) => {
+    const path = result.type === 'movie' ? '/movies' : '/tv-shows';
+    navigate(`${path}/${result.id}`);
     onClose();
   };
 
@@ -46,7 +62,13 @@ const SearchModal = ({ onClose }: { onClose: () => void }) => {
           </button>
         </div>
 
-        {results.length > 0 && (
+        {isLoading && (
+          <div className="text-center py-4">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto"></div>
+          </div>
+        )}
+
+        {!isLoading && results.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {results.map((result) => (
               <div
@@ -64,9 +86,17 @@ const SearchModal = ({ onClose }: { onClose: () => void }) => {
                     <span className="text-white font-semibold">{result.title}</span>
                   </div>
                 </div>
-                <p className="mt-1 text-sm text-gray-400">{result.type}</p>
+                <p className="mt-1 text-sm text-gray-400">
+                  {result.type === 'movie' ? 'Película' : 'Serie'}
+                </p>
               </div>
             ))}
+          </div>
+        )}
+
+        {!isLoading && searchTerm.length > 2 && results.length === 0 && (
+          <div className="text-center py-4 text-gray-400">
+            No se encontraron resultados para "{searchTerm}"
           </div>
         )}
       </div>
