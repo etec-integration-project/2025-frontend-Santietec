@@ -7,7 +7,6 @@ import Profiles from './pages/Profiles';
 import Browse from './pages/Browse';
 import TVShows from './pages/TVShows';
 import Movies from './pages/Movies';
-import Popular from './pages/Popular';
 import Watch from './pages/Watch';
 import { ProfileProvider } from './contexts/ProfileContext';
 import EmailConfirmation from './components/EmailConfirmation';
@@ -43,9 +42,8 @@ function App() {
                   <main>
                     <Routes>
                       <Route path="/browse" element={<Browse />} />
-                      <Route path="/tv-shows" element={<TVShows />} />
                       <Route path="/movies" element={<Movies />} />
-                      <Route path="/popular" element={<Popular />} />
+                      <Route path="/tv-shows" element={<TVShows />} />
                     </Routes>
                   </main>
                   <Footer />

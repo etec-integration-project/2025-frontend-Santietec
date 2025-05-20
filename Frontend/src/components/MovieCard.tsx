@@ -18,14 +18,22 @@ interface MovieProps {
 
 const MovieCard: React.FC<MovieProps> = ({ movie, onPlay }) => {
   return (
-    <div className="group relative">
+    <div className="group relative w-[225px] h-[150px] rounded-md overflow-hidden">
+      {/* Imagen de fondo desenfocada */}
       <img
         src={movie.image}
         alt={movie.title}
-        className="rounded-md w-full h-[150px] object-cover transition-transform duration-300 group-hover:scale-105 group-hover:opacity-20"
+        className="absolute inset-0 w-full h-full object-cover blur-md scale-110 brightness-50 z-0"
+        aria-hidden="true"
       />
-      
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-black/80 rounded-md">
+      {/* Imagen principal centrada */}
+      <img
+        src={movie.image}
+        alt={movie.title}
+        className="relative z-10 w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 group-hover:opacity-20"
+      />
+      {/* Overlay de información y botones */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-black/80 rounded-md z-20">
         <div className="flex flex-col h-full p-3">
           <div className="flex-grow">
             <div className="flex items-center space-x-2 mb-2">
@@ -45,16 +53,13 @@ const MovieCard: React.FC<MovieProps> = ({ movie, onPlay }) => {
                 <ChevronDown className="w-4 h-4" />
               </button>
             </div>
-
             <h3 className="font-bold mb-1 text-sm">{movie.title}</h3>
-            
             <div className="flex items-center space-x-2 text-xs mb-2">
               <span className="text-green-500 font-bold">{movie.match}% Match</span>
               <span className="border border-gray-400 px-1">{movie.rating}</span>
               <span>{movie.duration}</span>
               <span className="border border-gray-400 px-1">HD</span>
             </div>
-
             <div className="text-xs">
               <span className="text-gray-400">{movie.genres.join(' • ')}</span>
             </div>

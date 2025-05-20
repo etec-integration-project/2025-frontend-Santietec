@@ -54,7 +54,7 @@ const MovieRow = ({
 
       {/* Contenedor de Películas con Referencia */}
       <div
-        className="flex space-x-4 overflow-x-scroll scroll-smooth px-4 md:px-16 scrollbar-hide scrollbar-thumb-gray-600 scrollbar-track-transparent"
+        className="flex space-x-2 overflow-x-scroll scroll-smooth px-4 md:px-16 scrollbar-hide scrollbar-thumb-gray-600 scrollbar-track-transparent"
         ref={rowRef}
       >
         {movies.map((movie) => (
@@ -89,7 +89,7 @@ const Browse = () => {
     {
       id: 1,
       title: "John Wick",
-      image: "/movies/john-wick.jpg",
+      image: "/pelis/jhon wick.jpg",
       duration: "1h 41m",
       rating: "16+",
       year: 2014,
@@ -101,7 +101,7 @@ const Browse = () => {
     {
       id: 2,
       title: "Mad Max: Fury Road",
-      image: "/movies/mad-max.jpg",
+      image: "/pelis/madmax.webp",
       duration: "2h",
       rating: "16+",
       year: 2015,
@@ -113,7 +113,7 @@ const Browse = () => {
     {
       id: 3,
       title: "Die Hard",
-      image: "/movies/die-hard.jpg",
+      image: "/pelis/diehard.webp",
       duration: "2h 12m",
       rating: "16+",
       year: 1988,
@@ -125,7 +125,7 @@ const Browse = () => {
     {
       id: 4,
       title: "The Raid",
-      image: "/movies/raid.jpg",
+      image: "/pelis/the raid.png",
       duration: "1h 41m",
       rating: "16+",
       year: 2011,

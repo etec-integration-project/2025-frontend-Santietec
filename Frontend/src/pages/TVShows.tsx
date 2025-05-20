@@ -52,7 +52,7 @@ const ShowRow = ({
 
       <div
         ref={rowRef}
-        className="flex space-x-4 overflow-x-scroll scroll-smooth px-4 md:px-16 scrollbar-hide"
+        className="flex space-x-2 overflow-x-scroll scroll-smooth px-4 md:px-16 scrollbar-hide"
       >
         {shows.map((show, index) => (
           <div key={index} className="flex-none w-[250px]">

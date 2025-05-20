@@ -54,7 +54,6 @@ const Navbar = () => {
               <Link to="/browse" className="text-sm hover:text-gray-300">Inicio</Link>
               <Link to="/tv-shows" className="text-sm hover:text-gray-300">Series</Link>
               <Link to="/movies" className="text-sm hover:text-gray-300">Películas</Link>
-              <Link to="/popular" className="text-sm hover:text-gray-300">Novedades populares</Link>
             </div>
           </div>
 
