@@ -20,6 +20,22 @@ interface Movie {
   description?: string;
 }
 
+interface Show {
+  id: number;
+  title: string;
+  image: string;
+  duration: string;
+  rating: string;
+  year: number;
+  genres: string[];
+  match: number;
+  videoUrl: string;
+  description: string;
+  seasons: string;
+  episodes: number;
+  tag?: string;
+}
+
 const MovieRow = ({
   title,
   movies,
@@ -46,7 +62,7 @@ const MovieRow = ({
       {/* Botón de Scroll Izquierda */}
       <button
         onClick={scrollLeft}
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full z-10"
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full z-50"
         aria-label="Desplazar a la izquierda"
       >
         <ChevronLeft className="w-6 h-6" />
@@ -67,7 +83,63 @@ const MovieRow = ({
       {/* Botón de Scroll Derecha */}
       <button
         onClick={scrollRight}
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full z-10"
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full z-50"
+        aria-label="Desplazar a la derecha"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+    </div>
+  );
+};
+
+const ShowRow = ({
+  title,
+  shows,
+  onPlayShow,
+}: {
+  title: string;
+  shows: Show[];
+  onPlayShow: (show: Show) => void;
+}) => {
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    rowRef.current?.scrollBy({ left: -300, behavior: 'smooth' });
+  };
+
+  const scrollRight = () => {
+    rowRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="mb-8 relative">
+      <h2 className="text-xl font-semibold mb-4 px-4 md:px-16">{title}</h2>
+
+      {/* Botón de Scroll Izquierda */}
+      <button
+        onClick={scrollLeft}
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full z-50"
+        aria-label="Desplazar a la izquierda"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+
+      {/* Contenedor de Películas con Referencia */}
+      <div
+        className="flex space-x-2 overflow-x-scroll scroll-smooth px-4 md:px-16 scrollbar-hide scrollbar-thumb-gray-600 scrollbar-track-transparent"
+        ref={rowRef}
+      >
+        {shows.map((show) => (
+          <div key={show.id} className="flex-none w-[250px]">
+            <MovieCard movie={show} onPlay={onPlayShow} />
+          </div>
+        ))}
+      </div>
+
+      {/* Botón de Scroll Derecha */}
+      <button
+        onClick={scrollRight}
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full z-50"
         aria-label="Desplazar a la derecha"
       >
         <ChevronRight className="w-6 h-6" />
@@ -78,6 +150,7 @@ const MovieRow = ({
 
 const Browse = () => {
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [selectedShow, setSelectedShow] = useState<Show | null>(null);
   const { currentProfile } = useProfile();
   const [key, setKey] = useState(0);
 
@@ -137,7 +210,7 @@ const Browse = () => {
     {
       id: 5,
       title: "Mission: Impossible - Fallout",
-      image: "/movies/mission-impossible.jpg",
+      image: "/pelis/mision imposible fall.webp",
       duration: "2h 27m",
       rating: "13+",
       year: 2018,
@@ -149,7 +222,7 @@ const Browse = () => {
     {
       id: 26,
       title: "The Equalizer",
-      image: "/movies/equalizer.jpg",
+      image: "/pelis/equalizer.png",
       duration: "2h 12m",
       rating: "16+",
       year: 2014,
@@ -161,7 +234,7 @@ const Browse = () => {
     {
       id: 27,
       title: "Atomic Blonde",
-      image: "/movies/atomic-blonde.jpg",
+      image: "/pelis/atomic.png",
       duration: "1h 55m",
       rating: "16+",
       year: 2017,
@@ -173,7 +246,7 @@ const Browse = () => {
     {
       id: 28,
       title: "The Night Comes for Us",
-      image: "/movies/night-comes.jpg",
+      image: "/pelis/The_Night_Comes_for_Us-709983119-large.jpg",
       duration: "2h 1m",
       rating: "16+",
       year: 2018,
@@ -185,7 +258,7 @@ const Browse = () => {
     {
       id: 29,
       title: "Extraction",
-      image: "/movies/extraction.jpg",
+      image: "/pelis/Extraction.webp",
       duration: "1h 56m",
       rating: "16+",
       year: 2020,
@@ -197,7 +270,7 @@ const Browse = () => {
     {
       id: 30,
       title: "Nobody",
-      image: "/movies/nobody.jpg",
+      image: "/pelis/Nobody.webp",
       duration: "1h 32m",
       rating: "16+",
       year: 2021,
@@ -212,7 +285,7 @@ const Browse = () => {
     {
       id: 6,
       title: "Superbad",
-      image: "/movies/superbad.jpg",
+      image: "/pelis/Superbad.webp",
       duration: "1h 53m",
       rating: "16+",
       year: 2007,
@@ -224,7 +297,7 @@ const Browse = () => {
     {
       id: 7,
       title: "The Hangover",
-      image: "/movies/hangover.jpg",
+      image: "/pelis/hangover.webp",
       duration: "1h 40m",
       rating: "16+",
       year: 2009,
@@ -236,7 +309,7 @@ const Browse = () => {
     {
       id: 8,
       title: "Bridesmaids",
-      image: "/movies/bridesmaids.jpg",
+      image: "/pelis/Bridesmaids.webp",
       duration: "2h 5m",
       rating: "16+",
       year: 2011,
@@ -248,7 +321,7 @@ const Browse = () => {
     {
       id: 9,
       title: "The Grand Budapest Hotel",
-      image: "/movies/grand-budapest.jpg",
+      image: "/pelis/The Grand Budapest Hotel.webp",
       duration: "1h 39m",
       rating: "13+",
       year: 2014,
@@ -260,7 +333,7 @@ const Browse = () => {
     {
       id: 10,
       title: "21 Jump Street",
-      image: "/movies/21-jump-street.jpg",
+      image: "/pelis/21 Jump Street.webp",
       duration: "1h 49m",
       rating: "16+",
       year: 2012,
@@ -272,7 +345,7 @@ const Browse = () => {
     {
       id: 31,
       title: "The Lego Movie",
-      image: "/movies/lego-movie.jpg",
+      image: "/pelis/The Lego Movie.webp",
       duration: "1h 40m",
       rating: "7+",
       year: 2014,
@@ -284,7 +357,7 @@ const Browse = () => {
     {
       id: 32,
       title: "Scott Pilgrim vs. the World",
-      image: "/movies/scott-pilgrim.jpg",
+      image: "/pelis/Scott Pilgrim vs. the World.webp",
       duration: "1h 52m",
       rating: "13+",
       year: 2010,
@@ -296,7 +369,7 @@ const Browse = () => {
     {
       id: 33,
       title: "What We Do in the Shadows",
-      image: "/movies/shadows.jpg",
+      image: "/pelis/what we do in the nights.webp",
       duration: "1h 26m",
       rating: "16+",
       year: 2014,
@@ -308,7 +381,7 @@ const Browse = () => {
     {
       id: 34,
       title: "The Nice Guys",
-      image: "/movies/nice-guys.jpg",
+      image: "/pelis/The Nice Guys.webp",
       duration: "1h 56m",
       rating: "16+",
       year: 2016,
@@ -320,7 +393,7 @@ const Browse = () => {
     {
       id: 35,
       title: "Game Night",
-      image: "/movies/game-night.jpg",
+      image: "/pelis/Game Night.png",
       duration: "1h 40m",
       rating: "16+",
       year: 2018,
@@ -335,7 +408,7 @@ const Browse = () => {
     {
       id: 11,
       title: "The Shawshank Redemption",
-      image: "/movies/shawshank.jpg",
+      image: "/pelis/The Shawshank Redemption.webp",
       duration: "2h 22m",
       rating: "13+",
       year: 1994,
@@ -347,7 +420,7 @@ const Browse = () => {
     {
       id: 12,
       title: "Forrest Gump",
-      image: "/movies/forrest-gump.jpg",
+      image: "/pelis/Forrest Gump.webp",
       duration: "2h 22m",
       rating: "13+",
       year: 1994,
@@ -359,7 +432,7 @@ const Browse = () => {
     {
       id: 13,
       title: "The Godfather",
-      image: "/movies/godfather.jpg",
+      image: "/pelis/The Godfather.webp",
       duration: "2h 55m",
       rating: "16+",
       year: 1972,
@@ -371,7 +444,7 @@ const Browse = () => {
     {
       id: 14,
       title: "Schindler's List",
-      image: "/movies/schindlers-list.jpg",
+      image: "/pelis/Schindler's List.webp",
       duration: "3h 15m",
       rating: "16+",
       year: 1993,
@@ -383,7 +456,7 @@ const Browse = () => {
     {
       id: 15,
       title: "The Green Mile",
-      image: "/movies/green-mile.jpg",
+      image: "/pelis/The Green Mile",
       duration: "3h 9m",
       rating: "16+",
       year: 1999,
@@ -395,7 +468,7 @@ const Browse = () => {
     {
       id: 36,
       title: "The Social Network",
-      image: "/movies/social-network.jpg",
+      image: "/pelis/The Social Network.webp",
       duration: "2h",
       rating: "13+",
       year: 2010,
@@ -407,7 +480,7 @@ const Browse = () => {
     {
       id: 37,
       title: "The Prestige",
-      image: "/movies/prestige.jpg",
+      image: "/pelis/The Prestige.webp",
       duration: "2h 10m",
       rating: "13+",
       year: 2006,
@@ -419,7 +492,7 @@ const Browse = () => {
     {
       id: 38,
       title: "Whiplash",
-      image: "/movies/whiplash.jpg",
+      image: "/pelis/Whiplash.png",
       duration: "1h 46m",
       rating: "16+",
       year: 2014,
@@ -431,7 +504,7 @@ const Browse = () => {
     {
       id: 39,
       title: "The Departed",
-      image: "/movies/departed.jpg",
+      image: "/pelis/The Departed.webp",
       duration: "2h 31m",
       rating: "16+",
       year: 2006,
@@ -443,7 +516,7 @@ const Browse = () => {
     {
       id: 40,
       title: "There Will Be Blood",
-      image: "/movies/there-will-be-blood.jpg",
+      image: "/pelis/There Will Be Blood.webp",
       duration: "2h 38m",
       rating: "16+",
       year: 2007,
@@ -458,7 +531,7 @@ const Browse = () => {
     {
       id: 16,
       title: "Get Out",
-      image: "/movies/get-out.jpg",
+      image: "/pelis/Get Out.png",
       duration: "1h 44m",
       rating: "16+",
       year: 2017,
@@ -470,7 +543,7 @@ const Browse = () => {
     {
       id: 17,
       title: "The Babadook",
-      image: "/movies/babadook.jpg",
+      image: "/pelis/The Babadook.webp",
       duration: "1h 34m",
       rating: "16+",
       year: 2014,
@@ -482,7 +555,7 @@ const Browse = () => {
     {
       id: 18,
       title: "The Witch",
-      image: "/movies/witch.jpg",
+      image: "/pelis/The Witch.webp",
       duration: "1h 32m",
       rating: "16+",
       year: 2015,
@@ -494,7 +567,7 @@ const Browse = () => {
     {
       id: 19,
       title: "Midsommar",
-      image: "/movies/midsommar.jpg",
+      image: "/pelis/Midsommar.webp",
       duration: "2h 27m",
       rating: "16+",
       year: 2019,
@@ -506,7 +579,7 @@ const Browse = () => {
     {
       id: 20,
       title: "The Lighthouse",
-      image: "/movies/lighthouse.jpg",
+      image: "/pelis/The Lighthouse.webp",
       duration: "1h 49m",
       rating: "16+",
       year: 2019,
@@ -518,7 +591,7 @@ const Browse = () => {
     {
       id: 41,
       title: "Hereditary",
-      image: "/movies/hereditary.jpg",
+      image: "/pelis/Hereditary.webp",
       duration: "2h 7m",
       rating: "16+",
       year: 2018,
@@ -530,7 +603,7 @@ const Browse = () => {
     {
       id: 42,
       title: "It Follows",
-      image: "/movies/it-follows.jpg",
+      image: "/pelis/It Follows.webp",
       duration: "1h 40m",
       rating: "16+",
       year: 2014,
@@ -542,7 +615,7 @@ const Browse = () => {
     {
       id: 43,
       title: "The Ritual",
-      image: "/movies/ritual.jpg",
+      image: "/pelis/The Ritual.webp",
       duration: "1h 34m",
       rating: "16+",
       year: 2017,
@@ -554,7 +627,7 @@ const Browse = () => {
     {
       id: 44,
       title: "A Quiet Place",
-      image: "/movies/quiet-place.jpg",
+      image: "/pelis/A Quiet Place.webp",
       duration: "1h 30m",
       rating: "13+",
       year: 2018,
@@ -566,7 +639,7 @@ const Browse = () => {
     {
       id: 45,
       title: "The Invisible Man",
-      image: "/movies/invisible-man.jpg",
+      image: "/pelis/The Invisible Man.png",
       duration: "2h 4m",
       rating: "16+",
       year: 2020,
@@ -581,7 +654,7 @@ const Browse = () => {
     {
       id: 21,
       title: "Ex Machina",
-      image: "/movies/ex-machina.jpg",
+      image: "/pelis/Ex Machina.webp",
       duration: "1h 48m",
       rating: "16+",
       year: 2014,
@@ -593,7 +666,7 @@ const Browse = () => {
     {
       id: 22,
       title: "Her",
-      image: "/movies/her.jpg",
+      image: "/pelis/Her.webp",
       duration: "2h 6m",
       rating: "13+",
       year: 2013,
@@ -605,7 +678,7 @@ const Browse = () => {
     {
       id: 23,
       title: "District 9",
-      image: "/movies/district-9.jpg",
+      image: "/pelis/District 9.webp",
       duration: "1h 52m",
       rating: "16+",
       year: 2009,
@@ -617,7 +690,7 @@ const Browse = () => {
     {
       id: 24,
       title: "Looper",
-      image: "/movies/looper.jpg",
+      image: "/pelis/Looper.webp",
       duration: "1h 59m",
       rating: "16+",
       year: 2012,
@@ -629,7 +702,7 @@ const Browse = () => {
     {
       id: 25,
       title: "Children of Men",
-      image: "/movies/children-of-men.jpg",
+      image: "/pelis/Children of Men.webp",
       duration: "1h 49m",
       rating: "16+",
       year: 2006,
@@ -641,7 +714,7 @@ const Browse = () => {
     {
       id: 46,
       title: "Arrival",
-      image: "/movies/arrival.jpg",
+      image: "/pelis/Arrival.webp",
       duration: "1h 56m",
       rating: "13+",
       year: 2016,
@@ -653,7 +726,7 @@ const Browse = () => {
     {
       id: 47,
       title: "Blade Runner 2049",
-      image: "/movies/blade-runner.jpg",
+      image: "/pelis/Blade Runner 2049.webp",
       duration: "2h 44m",
       rating: "16+",
       year: 2017,
@@ -665,7 +738,7 @@ const Browse = () => {
     {
       id: 48,
       title: "Annihilation",
-      image: "/movies/annihilation.jpg",
+      image: "/pelis/Annihilation.webp",
       duration: "1h 55m",
       rating: "16+",
       year: 2018,
@@ -673,35 +746,268 @@ const Browse = () => {
       match: 90,
       description: "Una bióloga se une a una expedición en una zona misteriosa donde las leyes de la naturaleza no aplican.",
       videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
-    },
+    }
+  ];
+
+  const actionShows: Show[] = [
     {
-      id: 49,
-      title: "Dune",
-      image: "/movies/dune.jpg",
-      duration: "2h 35m",
+      id: 1,
+      title: "The Mandalorian",
+      image: "/series/The Mandalorian.jpg",
+      duration: "40m",
       rating: "13+",
-      year: 2021,
-      genres: ["Ciencia ficción", "Aventura", "Drama"],
-      match: 89,
-      description: "Un joven debe viajar al planeta más peligroso del universo para asegurar el futuro de su familia.",
+      year: 2019,
+      genres: ["Acción", "Aventura", "Ciencia ficción"],
+      match: 98,
+      description: "Las aventuras de un cazarrecompensas en los confines de la galaxia, lejos de la autoridad de la Nueva República.",
+      seasons: "3",
+      episodes: 24,
       videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     },
     {
-      id: 50,
-      title: "Interstellar",
-      image: "/movies/interstellar.jpg",
-      duration: "2h 49m",
+      id: 2,
+      title: "Breaking Bad",
+      image: "/series/Breaking Bad.webp",
+      duration: "45m",
+      rating: "16+",
+      year: 2008,
+      genres: ["Drama", "Crimen", "Thriller"],
+      match: 99,
+      description: "Un profesor de química con cáncer terminal se convierte en fabricante y distribuidor de metanfetamina para asegurar el futuro financiero de su familia.",
+      seasons: "5",
+      episodes: 62,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 3,
+      title: "24",
+      image: "/series/24.webp",
+      duration: "45m",
+      rating: "16+",
+      year: 2001,
+      genres: ["Acción", "Drama", "Thriller"],
+      match: 95,
+      description: "Las misiones del agente Jack Bauer en la Unidad de Contraterrorismo de Los Ángeles.",
+      seasons: "9",
+      episodes: 204,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 4,
+      title: "Daredevil",
+      image: "/series/Daredevil.webp",
+      duration: "55m",
+      rating: "16+",
+      year: 2015,
+      genres: ["Acción", "Drama", "Crimen"],
+      match: 97,
+      description: "Un abogado ciego lucha contra el crimen en Nueva York usando sus sentidos sobrehumanos.",
+      seasons: "3",
+      episodes: 39,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 5,
+      title: "Vikings",
+      image: "/series/Vikings.webp",
+      duration: "45m",
+      rating: "16+",
+      year: 2013,
+      genres: ["Acción", "Drama", "Historia"],
+      match: 96,
+      description: "Las aventuras de Ragnar Lothbrok, un granjero que se convierte en un temido guerrero vikingo.",
+      seasons: "6",
+      episodes: 89,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    }
+  ];
+
+  const comedyShows: Show[] = [
+    {
+      id: 11,
+      title: "Friends",
+      image: "/series/Friends.webp",
+      duration: "22m",
       rating: "13+",
-      year: 2014,
-      genres: ["Ciencia ficción", "Aventura", "Drama"],
-      match: 88,
-      description: "Un equipo de exploradores viaja a través de un agujero de gusano en el espacio para salvar a la humanidad.",
+      year: 1994,
+      genres: ["Comedia", "Romance"],
+      match: 98,
+      description: "Un grupo de amigos que viven en Manhattan y sus aventuras diarias.",
+      seasons: "10",
+      episodes: 236,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 12,
+      title: "The Office (US)",
+      image: "/series/The Office.webp",
+      duration: "22m",
+      rating: "12+",
+      year: 2005,
+      genres: ["Comedia", "Mockumentary"],
+      match: 97,
+      description: "La vida cotidiana de los empleados de una empresa de papel en Scranton, Pensilvania.",
+      seasons: "9",
+      episodes: 201,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 13,
+      title: "Brooklyn Nine-Nine",
+      image: "/series/Brooklyn Nine-Nine.webp",
+      duration: "22m",
+      rating: "13+",
+      year: 2013,
+      genres: ["Comedia", "Crimen"],
+      match: 96,
+      description: "Las aventuras de un detective de la policía de Nueva York y sus colegas.",
+      seasons: "8",
+      episodes: 153,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    }
+  ];
+
+  const dramaShows: Show[] = [
+    {
+      id: 21,
+      title: "The Crown",
+      image: "/series/The Crown.webp",
+      duration: "60m",
+      rating: "16+",
+      year: 2016,
+      genres: ["Drama", "Historia"],
+      match: 98,
+      description: "La vida de la reina Isabel II y los eventos que dieron forma al siglo XX.",
+      seasons: "6",
+      episodes: 60,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 22,
+      title: "The Sopranos",
+      image: "/series/The Sopranos.webp",
+      duration: "55m",
+      rating: "16+",
+      year: 1999,
+      genres: ["Drama", "Crimen"],
+      match: 99,
+      description: "Un jefe de la mafia de Nueva Jersey lucha por equilibrar su vida familiar y criminal.",
+      seasons: "6",
+      episodes: 86,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 23,
+      title: "Game of Thrones",
+      image: "/series/Game of Thrones.webp",
+      duration: "60m",
+      rating: "16+",
+      year: 2011,
+      genres: ["Drama", "Aventura", "Fantasía"],
+      match: 97,
+      description: "Nueve familias nobles luchan por el control de las tierras míticas de Westeros.",
+      seasons: "8",
+      episodes: 73,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    }
+  ];
+
+  const horrorShows: Show[] = [
+    {
+      id: 31,
+      title: "Stranger Things",
+      image: "/series/Stranger Things.webp",
+      duration: "50m",
+      rating: "13+",
+      year: 2016,
+      genres: ["Drama", "Fantasía", "Horror"],
+      match: 98,
+      description: "Cuando un niño desaparece, su madre, un jefe de policía y sus amigos deben enfrentar terribles fuerzas sobrenaturales para recuperarlo.",
+      seasons: "4",
+      episodes: 34,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 32,
+      title: "The Walking Dead",
+      image: "/series/The Walking Dead.webp",
+      duration: "45m",
+      rating: "16+",
+      year: 2010,
+      genres: ["Drama", "Horror", "Thriller"],
+      match: 96,
+      description: "Un grupo de sobrevivientes lucha por mantenerse con vida en un mundo post-apocalíptico dominado por zombis.",
+      seasons: "11",
+      episodes: 177,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 33,
+      title: "American Horror Story",
+      image: "/series/American Horror Story.webp",
+      duration: "45m",
+      rating: "16+",
+      year: 2011,
+      genres: ["Drama", "Horror", "Misterio"],
+      match: 95,
+      description: "Una antología de historias de terror, cada temporada con un nuevo escenario y personajes.",
+      seasons: "12",
+      episodes: 128,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    }
+  ];
+
+  const scifiShows: Show[] = [
+    {
+      id: 41,
+      title: "Black Mirror",
+      image: "/series/Black Mirror.webp",
+      duration: "60m",
+      rating: "16+",
+      year: 2011,
+      genres: ["Drama", "Ciencia ficción", "Thriller"],
+      match: 98,
+      description: "Una antología que explora un futuro tecnológico distópico y sus consecuencias en la sociedad.",
+      seasons: "6",
+      episodes: 28,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 42,
+      title: "The Expanse",
+      image: "/series/The Expanse.webp",
+      duration: "45m",
+      rating: "16+",
+      year: 2015,
+      genres: ["Drama", "Ciencia ficción", "Misterio"],
+      match: 97,
+      description: "En un futuro donde la humanidad ha colonizado el sistema solar, un detective y un capitán de nave espacial investigan un caso que podría desencadenar una guerra.",
+      seasons: "6",
+      episodes: 62,
+      videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
+    },
+    {
+      id: 43,
+      title: "Westworld",
+      image: "/series/Westworld.webp",
+      duration: "60m",
+      rating: "16+",
+      year: 2016,
+      genres: ["Drama", "Ciencia ficción", "Misterio"],
+      match: 96,
+      description: "En un parque temático futurista poblado por androides, los visitantes pueden vivir sus fantasías más salvajes sin consecuencias.",
+      seasons: "4",
+      episodes: 36,
       videoUrl: "SPIDER-MAN Vuelve a la gran pantalla. ¡TODOS ELLOS a partir del 2 DE AGOSTO!.mp4"
     }
   ];
 
   const handlePlayMovie = (movie: Movie) => {
     setSelectedMovie(movie);
+  };
+
+  const handlePlayShow = (show: Show) => {
+    setSelectedShow(show);
   };
 
   return (
@@ -716,6 +1022,14 @@ const Browse = () => {
           />
         )}
 
+        {selectedShow && (
+          <VideoPlayer
+            videoUrl={selectedShow.videoUrl}
+            title={selectedShow.title}
+            onClose={() => setSelectedShow(null)}
+          />
+        )}
+
         <HeroVideo
           title="Contenido destacado"
           description="Descubre las mejores películas y series en un solo lugar."
@@ -723,11 +1037,16 @@ const Browse = () => {
         />
 
         <div className="pt-4">
-          <MovieRow title="Acción" movies={actionMovies} onPlayMovie={handlePlayMovie} />
-          <MovieRow title="Comedia" movies={comedyMovies} onPlayMovie={handlePlayMovie} />
-          <MovieRow title="Drama" movies={dramaMovies} onPlayMovie={handlePlayMovie} />
-          <MovieRow title="Terror" movies={horrorMovies} onPlayMovie={handlePlayMovie} />
-          <MovieRow title="Ciencia Ficción" movies={scifiMovies} onPlayMovie={handlePlayMovie} />
+          <MovieRow title="Películas de Acción" movies={actionMovies} onPlayMovie={handlePlayMovie} />
+          <ShowRow title="Series de Acción" shows={actionShows} onPlayShow={handlePlayShow} />
+          <MovieRow title="Películas de Comedia" movies={comedyMovies} onPlayMovie={handlePlayMovie} />
+          <ShowRow title="Series de Comedia" shows={comedyShows} onPlayShow={handlePlayShow} />
+          <MovieRow title="Películas de Drama" movies={dramaMovies} onPlayMovie={handlePlayMovie} />
+          <ShowRow title="Series de Drama" shows={dramaShows} onPlayShow={handlePlayShow} />
+          <MovieRow title="Películas de Terror" movies={horrorMovies} onPlayMovie={handlePlayMovie} />
+          <ShowRow title="Series de Terror" shows={horrorShows} onPlayShow={handlePlayShow} />
+          <MovieRow title="Películas de Ciencia Ficción" movies={scifiMovies} onPlayMovie={handlePlayMovie} />
+          <ShowRow title="Series de Ciencia Ficción" shows={scifiShows} onPlayShow={handlePlayShow} />
         </div>
 
         <Footer />
