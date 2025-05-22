@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useProfile } from '../contexts/ProfileContext';
 import Navbar from './Navbar';
+import { LOGO_PATH } from '../constants/images';
 
 interface HeaderProps {
   showNav?: boolean;
@@ -18,9 +19,9 @@ const Header = ({ showNav = false, showSignIn = false }: HeaderProps) => {
         <header className="flex justify-between items-center px-4 md:px-16 py-6">
           <Link to="/">
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-              alt="Netflix"
-              className="h-8 md:h-12"
+              src={LOGO_PATH}
+              alt="CineVerse"
+              className="h-16 md:h-24"
             />
           </Link>
           {showSignIn && (

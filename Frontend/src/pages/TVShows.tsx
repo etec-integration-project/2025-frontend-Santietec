@@ -4,6 +4,7 @@ import VideoPlayer from '../components/VideoPlayer';
 import MovieCard from '../components/MovieCard';
 import HeroVideo from '../components/HeroVideo';
 import { useProfile } from '../contexts/ProfileContext';
+import Header from '../components/Header';
 
 interface Show {
   id: number;
@@ -803,6 +804,7 @@ const TVShows = () => {
 
   return (
     <div key={key} className="pt-20 bg-black min-h-screen">
+      {!selectedShow && <Header showNav />}
       {selectedShow && (
         <VideoPlayer
           videoUrl={selectedShow.videoUrl}

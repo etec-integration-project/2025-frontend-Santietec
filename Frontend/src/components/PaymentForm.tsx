@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { HelpCircle } from 'lucide-react';
 import axios from 'axios';
+import { LOGO_PATH } from '../constants/images';
 
 const PaymentForm = () => {
   const navigate = useNavigate();
@@ -44,8 +45,8 @@ const PaymentForm = () => {
       <header className="px-4 md:px-16 py-6 border-b">
         <Link to="/">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-            alt="Netflix"
+            src={LOGO_PATH}
+            alt="CineVerse"
             className="h-8 md:h-12"
           />
         </Link>

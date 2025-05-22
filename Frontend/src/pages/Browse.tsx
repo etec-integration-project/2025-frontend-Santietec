@@ -963,7 +963,7 @@ const Browse = () => {
 
   return (
     <>
-      <Header showNav />
+      {(!selectedMovie && !selectedShow) && <Header showNav />}
       <div key={key} className="pt-20 bg-black min-h-screen">
         {selectedMovie && (
           <VideoPlayer

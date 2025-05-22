@@ -4,6 +4,7 @@ import VideoPlayer from '../components/VideoPlayer';
 import MovieCard from '../components/MovieCard';
 import HeroVideo from '../components/HeroVideo';
 import { useProfile } from '../contexts/ProfileContext';
+import Header from '../components/Header';
 
 interface Movie {
   id: number;
@@ -675,29 +676,34 @@ const Movies = () => {
   };
 
   return (
-    <div key={key} className="pt-20 bg-black min-h-screen">
-      {selectedMovie && (
-        <VideoPlayer
-          videoUrl={selectedMovie.videoUrl}
-          title={selectedMovie.title}
-          onClose={() => setSelectedMovie(null)}
-        />
-      )}
-
-      <HeroVideo
-        title="Spider-Man"
-        description="¡Spider-Man vuelve a la gran pantalla! Prepárate para una nueva aventura épica con tu amigable vecino."
-        onPlay={() => handlePlayMovie(actionMovies[0])}
-      />
-
-      <div className="pt-8">
-        <MovieRow title="Acción" movies={actionMovies} onPlayMovie={handlePlayMovie} />
-        <MovieRow title="Comedia" movies={comedyMovies} onPlayMovie={handlePlayMovie} />
-        <MovieRow title="Drama" movies={dramaMovies} onPlayMovie={handlePlayMovie} />
-        <MovieRow title="Terror" movies={horrorMovies} onPlayMovie={handlePlayMovie} />
-        <MovieRow title="Ciencia Ficción" movies={scifiMovies} onPlayMovie={handlePlayMovie} />
+    <>
+      {!selectedMovie && <Header showNav />}
+      <div key={key} className="pt-20 bg-black min-h-screen">
+        {selectedMovie && (
+          <VideoPlayer
+            videoUrl={selectedMovie.videoUrl}
+            title={selectedMovie.title}
+            onClose={() => setSelectedMovie(null)}
+          />
+        )}
+        {!selectedMovie && (
+          <>
+            <HeroVideo
+              title="Spider-Man"
+              description="¡Spider-Man vuelve a la gran pantalla! Prepárate para una nueva aventura épica con tu amigable vecino."
+              onPlay={() => handlePlayMovie(actionMovies[0])}
+            />
+            <div className="pt-8">
+              <MovieRow title="Acción" movies={actionMovies} onPlayMovie={handlePlayMovie} />
+              <MovieRow title="Comedia" movies={comedyMovies} onPlayMovie={handlePlayMovie} />
+              <MovieRow title="Drama" movies={dramaMovies} onPlayMovie={handlePlayMovie} />
+              <MovieRow title="Terror" movies={horrorMovies} onPlayMovie={handlePlayMovie} />
+              <MovieRow title="Ciencia Ficción" movies={scifiMovies} onPlayMovie={handlePlayMovie} />
+            </div>
+          </>
+        )}
       </div>
-    </div>
+    </>
   );
 };
 

@@ -38,7 +38,7 @@ function App() {
               path="/*"
               element={
                 <>
-                  <Navbar />
+                  {/* <Navbar /> */}
                   <main>
                     <Routes>
                       <Route path="/browse" element={<Browse />} />

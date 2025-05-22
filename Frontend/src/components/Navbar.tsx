@@ -6,6 +6,7 @@ import ProfileMenu from './ProfileMenu';
 import LogoutDialog from './LogoutDialog';
 import { useProfile } from '../contexts/ProfileContext';
 import SearchModal from './SearchModal';
+import { LOGO_PATH } from '../constants/images';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,16 +39,16 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed w-full z-50 transition-colors duration-300 ${
+      <nav className={`fixed w-full z-[999] transition-colors duration-300 ${
         isScrolled ? 'bg-black' : 'bg-gradient-to-b from-black/70 to-transparent'
       }`}>
         <div className="px-4 md:px-16 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link to="/browse">
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-                alt="Netflix"
-                className="h-5 md:h-7"
+                src={LOGO_PATH}
+                alt="CineVerse"
+                className="h-5 md:h-9"
               />
             </Link>
             <div className="hidden md:flex items-center space-x-4">

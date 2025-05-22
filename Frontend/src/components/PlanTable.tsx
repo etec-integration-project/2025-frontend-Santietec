@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import axiosInstance from '../axiosConfig';
+import { LOGO_PATH } from '../constants/images';
 
 interface Plan {
   id: number;
@@ -111,8 +112,8 @@ const PlanTable = () => {
     <div className="min-h-screen bg-white">
       <header className="px-4 md:px-16 py-6 border-b">
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-          alt="Netflix"
+          src={LOGO_PATH}
+          alt="CineVerse"
           className="h-8 md:h-12"
         />
       </header>

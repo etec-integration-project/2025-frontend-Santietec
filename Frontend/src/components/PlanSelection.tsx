@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Check } from 'lucide-react';
+import { LOGO_PATH } from '../constants/images';
 
 const PlanSelection = () => {
   const navigate = useNavigate();
@@ -13,8 +14,8 @@ const PlanSelection = () => {
       <header className="px-4 md:px-16 py-6 border-b">
         <Link to="/">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-            alt="Netflix"
+            src={LOGO_PATH}
+            alt="CineVerse"
             className="h-8 md:h-12"
           />
         </Link>

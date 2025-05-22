@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   const footerLinks = [
     {
-      title: 'Acerca de Netflix',
+      title: 'Acerca de CineVerse',
       links: [
         { text: 'Descripción de la empresa', href: '/about' },
         { text: 'Relaciones con inversionistas', href: '/investors' },
@@ -91,7 +91,7 @@ const Footer = () => {
                 <option value="en">English</option>
               </select>
             </div>
-            <p className="text-sm">© {new Date().getFullYear()} Netflix, Inc.</p>
+            <p className="text-sm">© {new Date().getFullYear()} CineVerse, Inc.</p>
           </div>
         </div>
       </div>

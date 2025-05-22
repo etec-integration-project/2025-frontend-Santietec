@@ -1,0 +1,1 @@
+export const LOGO_PATH = '/Screenshot 2025-05-22 at 10-13-02 Image_fx(1)-Photoroom.png (Imagen PNG 1280 × 698 píxeles)-Photoroom.png'; 

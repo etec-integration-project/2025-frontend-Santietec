@@ -20,7 +20,7 @@ const CreateProfile = () => {
       await createProfile({
         name,
         is_kids: isKids,
-        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png'
+        avatar_url: 'https://i.pravatar.cc/150'
       });
       await loadProfiles(); // Agregar esta línea
       navigate('/profiles');
@@ -35,8 +35,8 @@ const CreateProfile = () => {
     <div className="min-h-screen bg-black">
       <header className="px-4 md:px-16 py-6 border-b border-gray-800">
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-          alt="Netflix"
+          src="/Image_fx(1)-Photoroom.png"
+          alt="CineVerse"
           className="h-8 md:h-12"
         />
       </header>

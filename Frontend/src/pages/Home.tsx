@@ -35,8 +35,8 @@ const Home = () => {
             A partir de $ 4.299. Cancela cuando quieras.
           </p>
           <p className="text-lg md:text-xl mb-6">
-            ¿Quieres ver Netflix ya? Ingresa tu email para crear una cuenta o
-            reiniciar tu membresía de Netflix.
+            ¿Quieres ver CineVerse ya? Ingresa tu email para crear una cuenta o
+            reiniciar tu membresía de CineVerse.
           </p>
 
           <form
