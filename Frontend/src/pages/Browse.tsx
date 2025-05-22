@@ -42,8 +42,8 @@ const MovieRow = ({
   onPlayMovie,
 }: {
   title: string;
-  movies: Movie[];
-  onPlayMovie: (movie: Movie) => void;
+  movies: (Movie | Show)[];
+  onPlayMovie: (content: Movie | Show) => void;
 }) => {
   const rowRef = useRef<HTMLDivElement>(null);
 
@@ -73,65 +73,9 @@ const MovieRow = ({
         className="flex space-x-2 overflow-x-scroll scroll-smooth px-4 md:px-16 scrollbar-hide scrollbar-thumb-gray-600 scrollbar-track-transparent"
         ref={rowRef}
       >
-        {movies.map((movie) => (
-          <div key={movie.id} className="flex-none w-[250px]">
-            <MovieCard movie={movie} onPlay={onPlayMovie} />
-          </div>
-        ))}
-      </div>
-
-      {/* Botón de Scroll Derecha */}
-      <button
-        onClick={scrollRight}
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full z-50"
-        aria-label="Desplazar a la derecha"
-      >
-        <ChevronRight className="w-6 h-6" />
-      </button>
-    </div>
-  );
-};
-
-const ShowRow = ({
-  title,
-  shows,
-  onPlayShow,
-}: {
-  title: string;
-  shows: Show[];
-  onPlayShow: (show: Show) => void;
-}) => {
-  const rowRef = useRef<HTMLDivElement>(null);
-
-  const scrollLeft = () => {
-    rowRef.current?.scrollBy({ left: -300, behavior: 'smooth' });
-  };
-
-  const scrollRight = () => {
-    rowRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
-  };
-
-  return (
-    <div className="mb-8 relative">
-      <h2 className="text-xl font-semibold mb-4 px-4 md:px-16">{title}</h2>
-
-      {/* Botón de Scroll Izquierda */}
-      <button
-        onClick={scrollLeft}
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full z-50"
-        aria-label="Desplazar a la izquierda"
-      >
-        <ChevronLeft className="w-6 h-6" />
-      </button>
-
-      {/* Contenedor de Películas con Referencia */}
-      <div
-        className="flex space-x-2 overflow-x-scroll scroll-smooth px-4 md:px-16 scrollbar-hide scrollbar-thumb-gray-600 scrollbar-track-transparent"
-        ref={rowRef}
-      >
-        {shows.map((show) => (
-          <div key={show.id} className="flex-none w-[250px]">
-            <MovieCard movie={show} onPlay={onPlayShow} />
+        {movies.map((content) => (
+          <div key={content.id} className="flex-none w-[250px]">
+            <MovieCard movie={content} onPlay={onPlayMovie} />
           </div>
         ))}
       </div>
@@ -1010,6 +954,13 @@ const Browse = () => {
     setSelectedShow(show);
   };
 
+  // Combinar películas y series por categoría
+  const actionContent = [...actionMovies, ...actionShows];
+  const comedyContent = [...comedyMovies, ...comedyShows];
+  const dramaContent = [...dramaMovies, ...dramaShows];
+  const horrorContent = [...horrorMovies, ...horrorShows];
+  const scifiContent = [...scifiMovies, ...scifiShows];
+
   return (
     <>
       <Header showNav />
@@ -1036,18 +987,66 @@ const Browse = () => {
           onPlay={() => handlePlayMovie(actionMovies[0])}
         />
 
-        <div className="pt-4">
-          <MovieRow title="Películas de Acción" movies={actionMovies} onPlayMovie={handlePlayMovie} />
-          <ShowRow title="Series de Acción" shows={actionShows} onPlayShow={handlePlayShow} />
-          <MovieRow title="Películas de Comedia" movies={comedyMovies} onPlayMovie={handlePlayMovie} />
-          <ShowRow title="Series de Comedia" shows={comedyShows} onPlayShow={handlePlayShow} />
-          <MovieRow title="Películas de Drama" movies={dramaMovies} onPlayMovie={handlePlayMovie} />
-          <ShowRow title="Series de Drama" shows={dramaShows} onPlayShow={handlePlayShow} />
-          <MovieRow title="Películas de Terror" movies={horrorMovies} onPlayMovie={handlePlayMovie} />
-          <ShowRow title="Series de Terror" shows={horrorShows} onPlayShow={handlePlayShow} />
-          <MovieRow title="Películas de Ciencia Ficción" movies={scifiMovies} onPlayMovie={handlePlayMovie} />
-          <ShowRow title="Series de Ciencia Ficción" shows={scifiShows} onPlayShow={handlePlayShow} />
-        </div>
+        {/* Ocultar filas de contenido si hay una película o serie seleccionada */}
+        {(!selectedMovie && !selectedShow) && (
+          <div className="pt-4">
+            <MovieRow
+              title="Acción"
+              movies={actionContent}
+              onPlayMovie={(content) => {
+                if ('seasons' in content) {
+                  handlePlayShow(content as Show);
+                } else {
+                  handlePlayMovie(content as Movie);
+                }
+              }}
+            />
+            <MovieRow
+              title="Comedia"
+              movies={comedyContent}
+              onPlayMovie={(content) => {
+                if ('seasons' in content) {
+                  handlePlayShow(content as Show);
+                } else {
+                  handlePlayMovie(content as Movie);
+                }
+              }}
+            />
+            <MovieRow
+              title="Drama"
+              movies={dramaContent}
+              onPlayMovie={(content) => {
+                if ('seasons' in content) {
+                  handlePlayShow(content as Show);
+                } else {
+                  handlePlayMovie(content as Movie);
+                }
+              }}
+            />
+            <MovieRow
+              title="Terror"
+              movies={horrorContent}
+              onPlayMovie={(content) => {
+                if ('seasons' in content) {
+                  handlePlayShow(content as Show);
+                } else {
+                  handlePlayMovie(content as Movie);
+                }
+              }}
+            />
+            <MovieRow
+              title="Ciencia Ficción"
+              movies={scifiContent}
+              onPlayMovie={(content) => {
+                if ('seasons' in content) {
+                  handlePlayShow(content as Show);
+                } else {
+                  handlePlayMovie(content as Movie);
+                }
+              }}
+            />
+          </div>
+        )}
 
         <Footer />
       </div>

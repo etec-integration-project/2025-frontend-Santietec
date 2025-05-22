@@ -243,7 +243,7 @@ const TVShows = () => {
     {
       id: 12,
       title: "The Office (US)",
-      image: "/series/The Office.webp",
+      image: "/series/The Office (US) (2005 - 2013).jpg",
       duration: "22m",
       rating: "12+",
       year: 2005,
@@ -341,7 +341,7 @@ const TVShows = () => {
     {
       id: 19,
       title: "30 Rock",
-      image: "/series/30 Rock.webp",
+      image: "/series/30 Rock.png",
       duration: "22m",
       rating: "12+",
       year: 2006,
@@ -355,7 +355,7 @@ const TVShows = () => {
     {
       id: 20,
       title: "Veep",
-      image: "/series/Veep.webp",
+      image: "/series/veep.webp",
       duration: "30m",
       rating: "16+",
       year: 2012,
