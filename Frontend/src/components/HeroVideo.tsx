@@ -1,13 +1,21 @@
 import React, { useState, useRef } from 'react';
 import { Volume2, VolumeX, Play, Plus } from 'lucide-react';
 
-interface HeroVideoProps {
+interface Movie {
+  id: number;
   title: string;
-  description: string;
+  image: string;
+  description?: string;
+  backdrop_path?: string;
+  overview?: string;
+}
+
+interface HeroVideoProps {
+  movie: Movie;
   onPlay: () => void;
 }
 
-const HeroVideo = ({ title, description, onPlay }: HeroVideoProps) => {
+const HeroVideo = ({ movie, onPlay }: HeroVideoProps) => {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -18,21 +26,22 @@ const HeroVideo = ({ title, description, onPlay }: HeroVideoProps) => {
     }
   };
 
+  // Truncar descripción para el Hero
+  const getShortDescription = () => {
+    const desc = movie.overview || movie.description || '';
+    return desc.length > 180 ? desc.substring(0, 180) + '...' : desc;
+  };
+
   return (
     <div className="relative h-[70vh] mb-8">
-      <video
-        ref={videoRef}
+      <div 
         className="w-full h-full object-cover"
-        autoPlay
-        loop
-        muted={isMuted}
-        playsInline
-      >
-        <source 
-          src="/El Sorprendente Hombre Araña - Tráiler.mp4"
-          type="video/mp4"
-        />
-      </video>
+        style={{
+          backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      />
       
       <div className="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent">
         <button
@@ -47,8 +56,8 @@ const HeroVideo = ({ title, description, onPlay }: HeroVideoProps) => {
         </button>
 
         <div className="absolute bottom-16 left-4 md:left-16 max-w-xl">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">{title}</h1>
-          <p className="text-lg mb-4">{description}</p>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">{movie.title}</h1>
+          <p className="text-lg mb-4">{getShortDescription()}</p>
           <div className="flex space-x-4">
             <button
               className="flex items-center bg-white text-black px-6 py-2 rounded font-semibold hover:bg-white/90"

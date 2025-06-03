@@ -7,10 +7,11 @@ import {
 interface VideoPlayerProps {
   videoUrl: string;
   title: string;
-  onClose: () => void;
+  description?: string;
+  onClose?: () => void;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, title, onClose }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, title, description, onClose }) => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [volume, setVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
@@ -22,7 +23,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, title, onClose }) =
   const playerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
+  const isYouTubeVideo = videoUrl.includes('youtube.com/embed/');
+
   useEffect(() => {
+    if (isYouTubeVideo) return;
+
     const video = videoRef.current;
     if (!video) return;
 
@@ -36,9 +41,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, title, onClose }) =
 
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
     return () => video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-  }, []);
+  }, [isYouTubeVideo]);
 
   useEffect(() => {
+    if (isYouTubeVideo) return;
+
     const video = videoRef.current;
     if (!video) return;
 
@@ -63,9 +70,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, title, onClose }) =
       video.removeEventListener('play', handlePlay);
       video.removeEventListener('pause', handlePause);
     };
-  }, []);
+  }, [isYouTubeVideo]);
 
   const handlePlayPause = () => {
+    if (isYouTubeVideo) return;
+    
     const video = videoRef.current;
     if (!video) return;
 
@@ -77,6 +86,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, title, onClose }) =
   };
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isYouTubeVideo) return;
+    
     const value = parseFloat(e.target.value);
     setVolume(value);
     if (videoRef.current) {
@@ -85,6 +96,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, title, onClose }) =
   };
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isYouTubeVideo) return;
+    
     const time = parseFloat(e.target.value);
     setCurrentTime(time);
     if (videoRef.current) {
@@ -105,6 +118,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, title, onClose }) =
   };
 
   const handleMouseMove = () => {
+    if (isYouTubeVideo) return;
+    
     setShowControls(true);
     if (controlsTimeoutRef.current) {
       clearTimeout(controlsTimeoutRef.current);
@@ -127,28 +142,42 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, title, onClose }) =
       ref={playerRef}
       className="fixed inset-0 bg-black z-50 flex items-center justify-center"
       onMouseMove={handleMouseMove}
-      onMouseLeave={() => isPlaying && setShowControls(false)}
+      onMouseLeave={() => !isYouTubeVideo && isPlaying && setShowControls(false)}
     >
-      <video
-        ref={videoRef}
-        className="w-full h-full"
-        src={videoUrl}
-        onClick={handlePlayPause}
-        playsInline
-      />
+      {isYouTubeVideo ? (
+        <iframe
+          src={`${videoUrl}?autoplay=1`}
+          className="w-full h-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      ) : (
+        <video
+          ref={videoRef}
+          className="w-full h-full"
+          src={videoUrl}
+          onClick={handlePlayPause}
+          playsInline
+        />
+      )}
 
-      {showControls && (
+      {!isYouTubeVideo && showControls && (
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/70">
           <div className="absolute top-4 left-4">
             <h2 className="text-2xl font-bold">{title}</h2>
+            {description && (
+              <p className="text-sm mt-2 max-w-xl">{description}</p>
+            )}
           </div>
 
-          <button 
-            className="absolute top-4 right-4 text-white hover:text-gray-300"
-            onClick={onClose}
-          >
-            <Minimize className="w-6 h-6" />
-          </button>
+          {onClose && (
+            <button 
+              className="absolute top-4 right-4 text-white hover:text-gray-300"
+              onClick={onClose}
+            >
+              <Minimize className="w-6 h-6" />
+            </button>
+          )}
 
           <div className="absolute bottom-0 left-0 right-0 p-4 space-y-4">
             <div className="flex items-center space-x-2">
