@@ -46,7 +46,6 @@ function App() {
                       <Route path="/tv-shows" element={<TVShows />} />
                     </Routes>
                   </main>
-                  <Footer />
                 </>
               }
             />

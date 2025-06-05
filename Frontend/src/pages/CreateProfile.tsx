@@ -37,7 +37,7 @@ const CreateProfile = () => {
         <img
           src="/Image_fx(1)-Photoroom.png"
           alt="CineVerse"
-          className="h-8 md:h-12"
+          className="h-16 md:h-24"
         />
       </header>
 
