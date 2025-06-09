@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
-import { Play, Plus, ThumbsUp, ChevronDown, X } from 'lucide-react';
+import { Play, Plus, ThumbsUp, ChevronDown, X, Check } from 'lucide-react';
 import { getMovieVideos, getTVShowVideos } from '../services/tmdbService';
 import { useNavigate } from 'react-router-dom';
+import { useMyList } from '../contexts/MyListContext';
+import { useLiked } from '../contexts/LikedContext';
 
 interface MovieProps {
   movie: {
@@ -38,6 +40,8 @@ const MovieCard: React.FC<MovieProps> = ({ movie, onPlay }) => {
   const imageUrl = movie.image || (movie.poster_path ? `https://image.tmdb.org/t/p/w342${movie.poster_path}` : '');
 
   const navigate = useNavigate();
+  const { addToMyList, removeFromMyList, isInMyList } = useMyList();
+  const { addToLiked, removeFromLiked, isLiked } = useLiked();
 
   // Función para buscar el tráiler
   const fetchTrailer = async () => {
@@ -72,6 +76,36 @@ const MovieCard: React.FC<MovieProps> = ({ movie, onPlay }) => {
     setTrailerUrl(null);
   };
 
+  const handleMyList = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isInMyList(movie.id)) {
+      await removeFromMyList(movie.id);
+    } else {
+      await addToMyList({
+        id: movie.id,
+        title: movie.title,
+        poster_path: movie.image,
+        type: movie.type || 'movie',
+        overview: movie.description || '',
+        vote_average: parseFloat(movie.rating)
+      });
+    }
+  };
+
+  const handleLiked = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isLiked(movie.id)) {
+      removeFromLiked(movie.id);
+    } else {
+      addToLiked({
+        id: movie.id,
+        title: movie.title,
+        poster_path: movie.image,
+        type: movie.type || 'movie',
+      });
+    }
+  };
+
   return (
     <>
       <div
@@ -80,6 +114,7 @@ const MovieCard: React.FC<MovieProps> = ({ movie, onPlay }) => {
         onMouseLeave={handleMouseLeave}
         tabIndex={0}
         style={{ zIndex: expanded ? 50 : 1 }}
+        onClick={() => navigate(`/details/${movie.id}`)}
       >
         {/* Main image or Trailer */}
         {expanded && trailerUrl ? (
@@ -105,20 +140,34 @@ const MovieCard: React.FC<MovieProps> = ({ movie, onPlay }) => {
           >
             <div className="flex items-center space-x-2 mb-3">
               <button 
-                onClick={() => onPlay(movie)}
+                onClick={(e) => { e.stopPropagation(); onPlay(movie); }}
                 className="bg-white rounded-full p-2 hover:bg-white/90 transition-colors"
               >
                 <Play className="w-5 h-5 text-black" fill="black" />
               </button>
-              <button className="border-2 border-gray-400 rounded-full p-2 hover:border-white transition-colors">
-                <Plus className="w-5 h-5" />
+              <button
+                onClick={handleMyList}
+                className="border-2 border-gray-400 rounded-full p-2 hover:border-white transition-colors"
+              >
+                {isInMyList(movie.id) ? (
+                  <Check className="w-5 h-5 text-white" />
+                ) : (
+                  <Plus className="w-5 h-5" />
+                )}
               </button>
-              <button className="border-2 border-gray-400 rounded-full p-2 hover:border-white transition-colors">
-                <ThumbsUp className="w-5 h-5" />
+              <button
+                onClick={handleLiked}
+                className="border-2 border-gray-400 rounded-full p-2 hover:border-white transition-colors"
+              >
+                {isLiked(movie.id) ? (
+                  <Check className="w-5 h-5 text-white" />
+                ) : (
+                  <ThumbsUp className="w-5 h-5" />
+                )}
               </button>
               <button 
                 className="border-2 border-gray-400 rounded-full p-2 hover:border-white transition-colors ml-auto"
-                onClick={() => navigate(`/details/${movie.id}`)}
+                onClick={(e) => { e.stopPropagation(); navigate(`/details/${movie.id}`); }}
               >
                 <ChevronDown className="w-5 h-5" />
               </button>
@@ -170,12 +219,15 @@ const MovieCard: React.FC<MovieProps> = ({ movie, onPlay }) => {
             )}
             <div className="flex space-x-2 mt-4">
               <button 
-                onClick={() => { setShowModal(false); onPlay(movie); }}
+                onClick={(e) => { e.stopPropagation(); setShowModal(false); onPlay(movie); }}
                 className="flex-1 flex items-center justify-center bg-white text-black px-4 py-2 rounded font-semibold hover:bg-white/90"
               >
                 <Play className="w-5 h-5 mr-2" /> Reproducir
               </button>
-              <button className="flex-1 flex items-center justify-center bg-gray-500/70 px-4 py-2 rounded font-semibold hover:bg-gray-500/50">
+              <button
+                onClick={handleMyList}
+                className="flex-1 flex items-center justify-center bg-gray-500/70 px-4 py-2 rounded font-semibold hover:bg-gray-500/50"
+              >
                 <Plus className="w-5 h-5 mr-2" /> Mi Lista
               </button>
             </div>

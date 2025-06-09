@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Bell, ChevronDown, X } from 'lucide-react';
 import NotificationsPanel from './NotificationsPanel';
@@ -7,21 +7,24 @@ import LogoutDialog from './LogoutDialog';
 import { useProfile } from '../contexts/ProfileContext';
 import SearchModal from './SearchModal';
 import { LOGO_PATH } from '../constants/images';
+import { searchContent } from '../services/search.service';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState<any[]>([]);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
   const { currentProfile } = useProfile();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -31,6 +34,56 @@ const Navbar = () => {
       searchInputRef.current.focus();
     }
   }, [isSearchOpen]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const searchModal = document.querySelector('.search-modal-container');
+      const searchInput = document.querySelector('.search-input-container');
+      
+      // Solo cerrar si el clic fue fuera del modal y del input de búsqueda
+      if (!searchModal?.contains(event.target as Node) && !searchInput?.contains(event.target as Node)) {
+        setIsSearchOpen(false);
+        setSearchTerm('');
+        setSearchResults([]);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const debounceTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const handleSearch = useCallback(async (query: string) => {
+    if (debounceTimeoutRef.current) {
+      clearTimeout(debounceTimeoutRef.current);
+    }
+    if (query.trim() === '') {
+      setSearchResults([]);
+      return;
+    }
+    debounceTimeoutRef.current = setTimeout(async () => {
+      try {
+        const results = await searchContent(query);
+        setSearchResults(results);
+      } catch (error) {
+        console.error('Error en la búsqueda:', error);
+        setSearchResults([]);
+      }
+    }, 500);
+  }, []);
+
+  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchTerm(query);
+    handleSearch(query);
+  };
+
+  const handleSearchButtonClick = () => {
+    setIsSearchOpen(prev => !prev);
+    if (!isSearchOpen) {
+      setSearchTerm('');
+      setSearchResults([]);
+    }
+  };
 
   const handleLogout = () => {
     setIsProfileMenuOpen(false);
@@ -55,27 +108,33 @@ const Navbar = () => {
               <Link to="/browse" className="text-sm hover:text-gray-300">Inicio</Link>
               <Link to="/tv-shows" className="text-sm hover:text-gray-300">Series</Link>
               <Link to="/movies" className="text-sm hover:text-gray-300">Películas</Link>
+              <Link to="/my-list" className="text-sm hover:text-gray-300">Mi Lista</Link>
             </div>
           </div>
 
           <div className="flex items-center space-x-4">
-            <div className="relative">
-              <div className={`flex items-center ${
-                isSearchOpen ? 'bg-black border border-white w-[250px]' : 'w-auto'
-              } transition-all duration-300 rounded-sm overflow-hidden`}>
+            <div className="relative search-input-container" ref={searchContainerRef}>
+              <div className={`flex items-center bg-black transition-all duration-300 rounded-sm overflow-hidden ${
+                isSearchOpen ? 'border border-white w-[250px]' : 'w-auto'
+              }`}>
                 <button 
-                  onClick={() => setIsSearchOpen(!isSearchOpen)}
+                  onClick={handleSearchButtonClick}
                   className="p-2 hover:text-gray-300"
                   aria-label="Buscar"
                 >
                   {isSearchOpen ? <X className="w-5 h-5" /> : <Search className="w-5 h-5" />}
                 </button>
+                {isSearchOpen && (
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    placeholder="Buscar películas o series"
+                    className="bg-black text-white px-2 py-1 flex-1 outline-none"
+                    value={searchTerm}
+                    onChange={handleSearchInputChange}
+                  />
+                )}
               </div>
-              {isSearchOpen && (
-                <div className="absolute left-0 top-full w-[400px] z-50">
-                  <SearchModal onClose={() => setIsSearchOpen(false)} />
-                </div>
-              )}
             </div>
 
             <div className="relative">
@@ -115,6 +174,21 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
+      {/* Render SearchModal as a full-screen overlay */}
+      {isSearchOpen && (
+        <div className="fixed inset-0 bg-black/95 z-[998] p-4 pt-20 overflow-y-auto search-modal-container">
+          <SearchModal
+            results={searchResults}
+            searchTerm={searchTerm}
+            onClose={() => {
+              setIsSearchOpen(false);
+              setSearchTerm('');
+              setSearchResults([]);
+            }}
+          />
+        </div>
+      )}
 
       <LogoutDialog 
         isOpen={isLogoutDialogOpen}

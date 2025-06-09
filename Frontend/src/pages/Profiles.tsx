@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProfile } from '../contexts/ProfileContext';
 import { Plus } from 'lucide-react';
+import type { Profile } from '../contexts/ProfileContext';
 
 const Profiles = () => {
   const { profiles, setCurrentProfile, loadProfiles } = useProfile();

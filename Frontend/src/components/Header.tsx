@@ -6,9 +6,10 @@ import { LOGO_PATH } from '../constants/images';
 interface HeaderProps {
   showNav?: boolean;
   showSignIn?: boolean;
+  hideLogo?: boolean;
 }
 
-const Header = ({ showNav = false, showSignIn = false }: HeaderProps) => {
+const Header = ({ showNav = false, showSignIn = false, hideLogo = false }: HeaderProps) => {
   const { currentProfile } = useProfile();
 
   return (
@@ -16,14 +17,16 @@ const Header = ({ showNav = false, showSignIn = false }: HeaderProps) => {
       {showNav && currentProfile ? (
         <Navbar />
       ) : (
-        <header className="flex justify-between items-center px-4 md:px-16 py-6">
-          <Link to="/">
-            <img
-              src={LOGO_PATH}
-              alt="CineVerse"
-              className="h-16 md:h-24"
-            />
-          </Link>
+        <header className={`flex items-center px-4 md:px-16 py-6 ${hideLogo ? 'justify-end' : 'justify-between'}`}>
+          {!hideLogo && (
+            <Link to="/">
+              <img
+                src={LOGO_PATH}
+                alt="CineVerse"
+                className="h-16 md:h-24"
+              />
+            </Link>
+          )}
           {showSignIn && (
             <Link
               to="/login"

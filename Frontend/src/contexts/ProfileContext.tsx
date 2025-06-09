@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
 import axiosInstance from '../axiosConfig';
 
-interface Profile {
+export interface Profile {
   id: number;
   name: string;
   is_kids: boolean;
@@ -21,6 +21,7 @@ interface ProfileContextType {
   createProfile: (profileData: ProfileData) => Promise<void>;
   loadProfiles: () => Promise<void>;
   deleteProfile: (profileId: number) => Promise<void>;
+  updateProfile: (profileId: number, profileData: ProfileData) => Promise<void>;
 }
 
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
@@ -58,6 +59,20 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }
   };
 
+  const updateProfile = async (profileId: number, profileData: ProfileData) => {
+    try {
+      const response = await axiosInstance.put(`/users/profiles/${profileId}`, profileData);
+      setProfiles(prevProfiles => 
+        prevProfiles.map(profile => 
+          profile.id === profileId ? response.data : profile
+        )
+      );
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      throw error;
+    }
+  };
+
   return (
     <ProfileContext.Provider 
       value={{ 
@@ -66,7 +81,8 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({ child
         setCurrentProfile, 
         createProfile, 
         loadProfiles,
-        deleteProfile 
+        deleteProfile,
+        updateProfile 
       }}
     >
       {children}

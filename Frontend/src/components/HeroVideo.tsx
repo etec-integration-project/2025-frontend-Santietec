@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { Volume2, VolumeX, Play, Plus } from 'lucide-react';
+import { Volume2, VolumeX, Play, Plus, Check } from 'lucide-react';
+import { useMyList } from '../contexts/MyListContext';
 
 interface Movie {
   id: number;
@@ -18,6 +19,7 @@ interface HeroVideoProps {
 const HeroVideo = ({ movie, onPlay }: HeroVideoProps) => {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { addToMyList, removeFromMyList, isInMyList } = useMyList();
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -30,6 +32,21 @@ const HeroVideo = ({ movie, onPlay }: HeroVideoProps) => {
   const getShortDescription = () => {
     const desc = movie.overview || movie.description || '';
     return desc.length > 180 ? desc.substring(0, 180) + '...' : desc;
+  };
+
+  const handleMyList = async () => {
+    if (isInMyList(movie.id)) {
+      await removeFromMyList(movie.id);
+    } else {
+      await addToMyList({
+        id: movie.id,
+        title: movie.title,
+        poster_path: movie.image,
+        type: 'movie',
+        overview: movie.description || '',
+        vote_average: 0
+      });
+    }
   };
 
   return (
@@ -66,8 +83,15 @@ const HeroVideo = ({ movie, onPlay }: HeroVideoProps) => {
               <Play className="w-5 h-5 mr-2" />
               Reproducir
             </button>
-            <button className="flex items-center bg-gray-500/70 px-6 py-2 rounded font-semibold hover:bg-gray-500/50">
-              <Plus className="w-5 h-5 mr-2" />
+            <button
+              className="flex items-center bg-gray-500/70 px-6 py-2 rounded font-semibold hover:bg-gray-500/50"
+              onClick={handleMyList}
+            >
+              {isInMyList(movie.id) ? (
+                <Check className="w-5 h-5 mr-2" />
+              ) : (
+                <Plus className="w-5 h-5 mr-2" />
+              )}
               Mi Lista
             </button>
           </div>
