@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { Volume2, VolumeX, Play, Plus, Check } from 'lucide-react';
+import React, { useRef } from 'react';
+import { Play, Plus, Check } from 'lucide-react';
 import { useMyList } from '../contexts/MyListContext';
 
 interface Movie {
@@ -17,16 +17,8 @@ interface HeroVideoProps {
 }
 
 const HeroVideo = ({ movie, onPlay }: HeroVideoProps) => {
-  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { addToMyList, removeFromMyList, isInMyList } = useMyList();
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(!isMuted);
-    }
-  };
 
   // Truncar descripción para el Hero
   const getShortDescription = () => {
@@ -61,16 +53,6 @@ const HeroVideo = ({ movie, onPlay }: HeroVideoProps) => {
       />
       
       <div className="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent">
-        <button
-          onClick={toggleMute}
-          className="absolute top-4 right-4 bg-gray-800/60 p-2 rounded-full hover:bg-gray-700/60"
-        >
-          {isMuted ? (
-            <VolumeX className="w-6 h-6" />
-          ) : (
-            <Volume2 className="w-6 h-6" />
-          )}
-        </button>
 
         <div className="absolute bottom-16 left-4 md:left-16 max-w-xl">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">{movie.title}</h1>

@@ -7,10 +7,13 @@ interface HeaderProps {
   showNav?: boolean;
   showSignIn?: boolean;
   hideLogo?: boolean;
+  hideAll?: boolean;
 }
 
-const Header = ({ showNav = false, showSignIn = false, hideLogo = false }: HeaderProps) => {
+const Header = ({ showNav = false, showSignIn = false, hideLogo = false, hideAll = false }: HeaderProps) => {
   const { currentProfile } = useProfile();
+
+  if (hideAll) return null;
 
   return (
     <>

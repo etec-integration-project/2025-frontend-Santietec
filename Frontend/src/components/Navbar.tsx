@@ -5,6 +5,7 @@ import NotificationsPanel from './NotificationsPanel';
 import ProfileMenu from './ProfileMenu';
 import LogoutDialog from './LogoutDialog';
 import { useProfile } from '../contexts/ProfileContext';
+import { useNotifications } from '../contexts/NotificationContext';
 import SearchModal from './SearchModal';
 import { LOGO_PATH } from '../constants/images';
 import { searchContent } from '../services/search.service';
@@ -20,10 +21,11 @@ const Navbar = () => {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const { currentProfile } = useProfile();
+  const {  } = useNotifications();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
+      setIsScrolled(window.scrollY > 400);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -40,7 +42,6 @@ const Navbar = () => {
       const searchModal = document.querySelector('.search-modal-container');
       const searchInput = document.querySelector('.search-input-container');
       
-      // Solo cerrar si el clic fue fuera del modal y del input de búsqueda
       if (!searchModal?.contains(event.target as Node) && !searchInput?.contains(event.target as Node)) {
         setIsSearchOpen(false);
         setSearchTerm('');
@@ -83,6 +84,7 @@ const Navbar = () => {
       setSearchTerm('');
       setSearchResults([]);
     }
+    if (isNotificationsOpen) setIsNotificationsOpen(false);
   };
 
   const handleLogout = () => {
@@ -90,36 +92,40 @@ const Navbar = () => {
     setIsLogoutDialogOpen(true);
   };
 
+  const handleCloseNotifications = () => {
+    setIsNotificationsOpen(false);
+  };
+
   return (
     <>
       <nav className={`fixed w-full z-[999] transition-colors duration-300 ${
-        isScrolled ? 'bg-black' : 'bg-gradient-to-b from-black/70 to-transparent'
+        isScrolled ? 'bg-black' : 'bg-transparent'
       }`}>
         <div className="px-4 md:px-16 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-8">
-            <Link to="/browse">
+            <Link to="/browse" className="flex items-center">
               <img 
                 src={LOGO_PATH}
                 alt="CineVerse"
-                className="h-5 md:h-9"
+                className="h-8 w-auto"
               />
             </Link>
             <div className="hidden md:flex items-center space-x-4">
-              <Link to="/browse" className="text-sm hover:text-gray-300">Inicio</Link>
-              <Link to="/tv-shows" className="text-sm hover:text-gray-300">Series</Link>
-              <Link to="/movies" className="text-sm hover:text-gray-300">Películas</Link>
-              <Link to="/my-list" className="text-sm hover:text-gray-300">Mi Lista</Link>
+              <Link to="/browse" className="text-sm hover:text-gray-300 leading-none">Inicio</Link>
+              <Link to="/tv-shows" className="text-sm hover:text-gray-300 leading-none">Series</Link>
+              <Link to="/movies" className="text-sm hover:text-gray-300 leading-none">Películas</Link>
+              <Link to="/my-list" className="text-sm hover:text-gray-300 leading-none">Mi Lista</Link>
             </div>
           </div>
 
           <div className="flex items-center space-x-4">
             <div className="relative search-input-container" ref={searchContainerRef}>
-              <div className={`flex items-center bg-black transition-all duration-300 rounded-sm overflow-hidden ${
-                isSearchOpen ? 'border border-white w-[250px]' : 'w-auto'
+              <div className={`flex items-center transition-all duration-300 rounded-sm overflow-hidden ${
+                isSearchOpen ? 'bg-black border border-white w-[250px]' : 'w-auto'
               }`}>
                 <button 
                   onClick={handleSearchButtonClick}
-                  className="p-2 hover:text-gray-300"
+                  className="w-8 h-8 flex items-center justify-center hover:text-gray-300 bg-transparent"
                   aria-label="Buscar"
                 >
                   {isSearchOpen ? <X className="w-5 h-5" /> : <Search className="w-5 h-5" />}
@@ -139,20 +145,22 @@ const Navbar = () => {
 
             <div className="relative">
               <button 
-                className="hover:text-gray-300"
+                className="w-8 h-8 flex items-center justify-center hover:text-gray-300 bg-transparent"
                 onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
               >
                 <Bell className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 bg-red-600 text-xs w-4 h-4 flex items-center justify-center rounded-full">
-                  3
-                </span>
+                {/* {notifications.length > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-600 text-xs w-4 h-4 flex items-center justify-center rounded-full">
+                    {notifications.length}
+                  </span>
+                )} */}
               </button>
-              {isNotificationsOpen && <NotificationsPanel />}
+              {isNotificationsOpen && <NotificationsPanel onClose={handleCloseNotifications} />}
             </div>
 
             <div className="relative">
               <button
-                className="flex items-center space-x-2 hover:text-gray-300"
+                className="h-8 flex items-center space-x-2 hover:text-gray-300"
                 onMouseEnter={() => setIsProfileMenuOpen(true)}
                 disabled={!currentProfile}
               >
@@ -175,7 +183,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Render SearchModal as a full-screen overlay */}
       {isSearchOpen && (
         <div className="fixed inset-0 bg-black/95 z-[998] p-4 pt-20 overflow-y-auto search-modal-container">
           <SearchModal

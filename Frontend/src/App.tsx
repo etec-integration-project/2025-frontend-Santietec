@@ -11,6 +11,7 @@ import Watch from './pages/Watch';
 import { ProfileProvider } from './contexts/ProfileContext';
 import { MyListProvider } from './contexts/MyListContext';
 import { LikedProvider } from './contexts/LikedContext';
+import { NotificationProvider } from './contexts/NotificationContext';
 import EmailConfirmation from './components/EmailConfirmation';
 import PlanSelection from './components/PlanSelection';
 import PlanTable from './components/PlanTable';
@@ -26,41 +27,30 @@ function App() {
     <ProfileProvider>
       <MyListProvider>
         <LikedProvider>
-          <BrowserRouter>
-            <div className="min-h-screen bg-black text-white">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<EmailConfirmation />} />
-                <Route path="/signup/planform" element={<PlanSelection />} />
-                <Route path="/signup/plan-table" element={<PlanTable />} />
-                <Route path="/signup/payment" element={<PaymentForm />} />
-                <Route path="/profiles" element={<Profiles />} />
-                <Route path="/profiles/new" element={<CreateProfile />} />
-                <Route path="/profiles/manage" element={<ProfileManager />} />
-                <Route path="/profiles/edit/:id" element={<EditProfile />} />
-                <Route path="/watch/:id" element={<Watch />} />
-                <Route path="/details/:id" element={<Details />} />
-                <Route
-                  path="/*"
-                  element={
-                    <>
-                      <Navbar />
-                      <main>
-                        <Routes>
-                          <Route path="/browse" element={<Browse />} />
-                          <Route path="/movies" element={<Movies />} />
-                          <Route path="/tv-shows" element={<TVShows />} />
-                          <Route path="/my-list" element={<MyList />} />
-                        </Routes>
-                      </main>
-                      <Footer />
-                    </>
-                  }
-                />
-              </Routes>
-            </div>
-          </BrowserRouter>
+          <NotificationProvider>
+            <BrowserRouter>
+              <div className="min-h-screen bg-black text-white">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/signup" element={<EmailConfirmation />} />
+                  <Route path="/signup/planform" element={<PlanSelection />} />
+                  <Route path="/signup/plan-table" element={<PlanTable />} />
+                  <Route path="/signup/payment" element={<PaymentForm />} />
+                  <Route path="/profiles" element={<Profiles />} />
+                  <Route path="/profiles/new" element={<CreateProfile />} />
+                  <Route path="/profiles/manage" element={<ProfileManager />} />
+                  <Route path="/profiles/edit/:id" element={<EditProfile />} />
+                  <Route path="/watch/:id" element={<Watch />} />
+                  <Route path="/details/:type/:id" element={<Details />} />
+                  <Route path="/browse" element={<Browse />} />
+                  <Route path="/movies" element={<Movies />} />
+                  <Route path="/tv-shows" element={<TVShows />} />
+                  <Route path="/my-list" element={<MyList />} />
+                </Routes>
+              </div>
+            </BrowserRouter>
+          </NotificationProvider>
         </LikedProvider>
       </MyListProvider>
     </ProfileProvider>

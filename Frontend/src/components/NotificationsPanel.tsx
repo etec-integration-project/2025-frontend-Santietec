@@ -1,60 +1,55 @@
 import React from 'react';
-import { Bell } from 'lucide-react';
+import { Bell, X } from 'lucide-react';
+import { useNotifications } from '../contexts/NotificationContext';
 
-const NotificationsPanel = () => {
-  const notifications = [
-    {
-      id: 1,
-      title: 'Nueva temporada disponible',
-      message: 'Stranger Things 5 ya está disponible',
-      time: '2h',
-      image: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=500'
-    },
-    {
-      id: 2,
-      title: 'Continúa viendo',
-      message: 'Continúa viendo The Crown donde lo dejaste',
-      time: '1d',
-      image: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=500'
-    },
-    {
-      id: 3,
-      title: 'Recomendado para ti',
-      message: 'Nueva serie: Wednesday',
-      time: '2d',
-      image: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=500'
-    }
-  ];
+interface NotificationsPanelProps {
+  onClose: () => void;
+}
+
+const NotificationsPanel: React.FC<NotificationsPanelProps> = ({ onClose }) => {
+  const { notifications, clearNotifications } = useNotifications();
 
   return (
-    <div className="absolute top-full right-0 mt-2 w-80 bg-black border border-gray-800 rounded-md shadow-lg overflow-hidden">
-      <div className="p-4 border-b border-gray-800">
-        <div className="flex items-center space-x-2">
-          <Bell className="w-5 h-5" />
-          <h3 className="font-semibold">Notificaciones</h3>
-        </div>
+    <div className="absolute top-full right-0 mt-2 w-80 bg-black/90 rounded-lg shadow-lg overflow-hidden z-[1000]">
+      <div className="p-4 flex items-center justify-between border-b border-gray-700">
+        <h3 className="font-bold text-white">Notificaciones</h3>
+        <button onClick={onClose} className="text-gray-400 hover:text-white">
+          <X className="w-5 h-5" />
+        </button>
       </div>
-      <div className="max-h-96 overflow-y-auto">
-        {notifications.map((notification) => (
-          <div
-            key={notification.id}
-            className="p-4 border-b border-gray-800 hover:bg-gray-900 transition-colors cursor-pointer"
-          >
-            <div className="flex space-x-3">
+      <div className="max-h-96 overflow-y-auto custom-scrollbar">
+        {notifications.length === 0 ? (
+          <p className="text-gray-400 p-4 text-center">No hay notificaciones.</p>
+        ) : (
+          notifications.map((notification) => (
+            <div
+              key={notification.id}
+              className="p-3 flex items-center space-x-3 hover:bg-gray-800 transition-colors cursor-pointer"
+            >
               <img
                 src={notification.image}
                 alt=""
-                className="w-16 h-16 object-cover rounded"
+                className="w-24 h-14 object-cover rounded-sm flex-shrink-0"
               />
               <div className="flex-1">
-                <h4 className="font-semibold text-sm">{notification.title}</h4>
-                <p className="text-sm text-gray-400">{notification.message}</p>
+                <h4 className="font-semibold text-white text-sm mb-1 line-clamp-2">{notification.title}</h4>
+                <p className="text-xs text-gray-400">{notification.message}</p>
                 <span className="text-xs text-gray-500 mt-1">{notification.time}</span>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
+      {notifications.length > 0 && (
+        <div className="p-4 border-t border-gray-700">
+          <button 
+            onClick={clearNotifications}
+            className="w-full bg-gray-700 text-white py-2 rounded hover:bg-gray-600 transition-colors text-sm"
+          >
+            Borrar todas las notificaciones
+          </button>
+        </div>
+      )}
     </div>
   );
 };

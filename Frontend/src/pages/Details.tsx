@@ -8,7 +8,7 @@ import { X } from 'lucide-react';
 const TMDB_API_KEY = '1e143c15ed8df70dfa708cb2ac175ea7';
 
 const Details = () => {
-  const { id } = useParams();
+  const { id, type } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState<any>(null);
   const [cast, setCast] = useState<any[]>([]);
@@ -20,37 +20,32 @@ const Details = () => {
       setLoading(true);
       setError('');
       try {
-        let type: 'movie' | 'tv' | null = null;
-        let detailData;
-
-        try {
-          // Intentar como película
-          const movieRes = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${TMDB_API_KEY}&language=es-ES`);
-          detailData = movieRes.data;
-          type = 'movie';
-        } catch (movieErr) {
-          // Si falla como película, intentar como serie
-          const tvRes = await axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${TMDB_API_KEY}&language=es-ES`);
-          detailData = tvRes.data;
-          type = 'tv';
+        if (!id || !type) {
+          throw new Error('ID o tipo no proporcionado');
         }
-        setData(detailData);
+
+        // Obtener detalles basados en el tipo
+        const detailRes = await axios.get(
+          `https://api.themoviedb.org/3/${type}/${id}?api_key=${TMDB_API_KEY}&language=es-ES`
+        );
+        setData(detailRes.data);
 
         // Obtener el reparto
-        if (type) {
-          const creditsRes = await axios.get(`https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${TMDB_API_KEY}&language=es-ES`);
-          // Filtrar actores con profile_path y limitar a los 10 primeros
-          setCast(creditsRes.data.cast.filter((actor: any) => actor.profile_path).slice(0, 10));
-        }
+        const creditsRes = await axios.get(
+          `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${TMDB_API_KEY}&language=es-ES`
+        );
+        // Filtrar actores con profile_path y limitar a los 10 primeros
+        setCast(creditsRes.data.cast.filter((actor: any) => actor.profile_path).slice(0, 10));
 
       } catch (err: any) {
         setError('No se pudo cargar la información.');
+        console.error('Error fetching details:', err);
       } finally {
         setLoading(false);
       }
     };
     fetchData();
-  }, [id]);
+  }, [id, type]);
 
   if (loading) return <div className="text-center text-white py-20">Cargando...</div>;
   if (error) return <div className="text-center text-red-500 py-20">{error}</div>;
@@ -61,7 +56,7 @@ const Details = () => {
       <Header hideLogo={true} />
       <main className="max-w-4xl mx-auto px-4 py-12 pt-28 relative">
         <button
-          onClick={() => navigate(-1)} // Vuelve a la página anterior
+          onClick={() => navigate(-1)}
           className="absolute top-4 right-4 text-white p-2 rounded-full bg-gray-800/60 hover:bg-gray-700/60 z-10"
         >
           <X className="w-6 h-6" />
@@ -88,6 +83,16 @@ const Details = () => {
             <div className="mb-2">
               <span className="font-semibold">Duración:</span> {data.runtime || data.episode_run_time?.[0]} min
             </div>
+            {type === 'tv' && (
+              <>
+                <div className="mb-2">
+                  <span className="font-semibold">Temporadas:</span> {data.number_of_seasons}
+                </div>
+                <div className="mb-2">
+                  <span className="font-semibold">Episodios:</span> {data.number_of_episodes}
+                </div>
+              </>
+            )}
             {cast.length > 0 && (
               <div className="mb-2">
                 <span className="font-semibold">Reparto:</span>
@@ -107,7 +112,6 @@ const Details = () => {
                 </div>
               </div>
             )}
-            {/* Puedes agregar más info aquí */}
           </div>
         </div>
       </main>

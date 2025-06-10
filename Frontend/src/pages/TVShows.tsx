@@ -39,6 +39,7 @@ interface Show {
   vote_average?: number;
   number_of_seasons?: number;
   number_of_episodes?: number;
+  type: 'movie' | 'tv';
 }
 
 const MovieRow = ({
@@ -135,23 +136,16 @@ const TVShows = () => {
         ]);
 
         const formatShow = (show: any): Show => {
-          // Truncar la descripción a 150 caracteres
-          const truncatedOverview = show.overview 
-            ? show.overview.length > 150 
-              ? show.overview.substring(0, 150) + '...'
-              : show.overview
-            : '';
-
           return {
             id: show.id,
             title: show.name,
             image: `https://image.tmdb.org/t/p/w500${show.poster_path}`,
-            duration: `${show.episode_run_time?.[0] || 45}m`,
+            duration: show.episode_run_time?.[0] && !isNaN(show.episode_run_time[0]) ? `${show.episode_run_time[0]}m` : 'N/A',
             rating: show.adult ? "18+" : "13+",
             year: new Date(show.first_air_date).getFullYear(),
             genres: show.genre_ids || [],
             match: Math.floor(show.vote_average * 10),
-            description: truncatedOverview,
+            description: show.overview || show.description || '',
             videoUrl: "",
             seasons: show.number_of_seasons?.toString() || "1",
             episodes: show.number_of_episodes || 0,
@@ -161,7 +155,8 @@ const TVShows = () => {
             first_air_date: show.first_air_date,
             vote_average: show.vote_average,
             number_of_seasons: show.number_of_seasons,
-            number_of_episodes: show.number_of_episodes
+            number_of_episodes: show.number_of_episodes,
+            type: 'tv'
           };
         };
 

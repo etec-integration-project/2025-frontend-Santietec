@@ -16,7 +16,8 @@ import {
   getComedyMovies,
   getDramaMovies,
   getHorrorMovies,
-  getSciFiMovies
+  getSciFiMovies,
+  getMovieDetails
 } from '../services/tmdbService';
 
 interface Movie {
@@ -123,15 +124,15 @@ const Movies = () => {
       try {
         setLoading(true);
         const [
-          popular,
-          topRated,
-          upcoming,
-          nowPlaying,
-          action,
-          comedy,
-          drama,
-          horror,
-          sciFi
+          popularMoviesData,
+          topRatedMoviesData,
+          upcomingMoviesData,
+          nowPlayingMoviesData,
+          actionMoviesData,
+          comedyMoviesData,
+          dramaMoviesData,
+          horrorMoviesData,
+          sciFiMoviesData
         ] = await Promise.all([
           getPopularMovies(),
           getTopRatedMovies(),
@@ -144,42 +145,62 @@ const Movies = () => {
           getSciFiMovies()
         ]);
 
-        const formatMovie = (movie: any): Movie => {
-          // Truncar la descripción a 150 caracteres
-          const truncatedOverview = movie.overview 
-            ? movie.overview.length > 150 
-              ? movie.overview.substring(0, 150) + '...'
-              : movie.overview
-            : '';
+        const processMovies = async (movies: any[]) => {
+          const detailedMoviesPromises = movies.map(async (movie: any) => {
+            try {
+              const details = await getMovieDetails(movie.id);
+              const runtime = Number(details.runtime);
+              const formattedDuration = Number.isFinite(runtime) && runtime > 0
+                ? `${Math.floor(runtime / 60)}h ${runtime % 60}m`
+                : 'N/A';
 
-          return {
-            id: movie.id,
-            title: movie.title,
-            image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-            duration: `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m`,
-            rating: movie.adult ? "18+" : "13+",
-            year: new Date(movie.release_date).getFullYear(),
-            genres: movie.genre_ids || [],
-            match: Math.floor(movie.vote_average * 10),
-            description: truncatedOverview,
-            videoUrl: "",
-            poster_path: movie.poster_path,
-            backdrop_path: movie.backdrop_path,
-            overview: movie.overview,
-            release_date: movie.release_date,
-            vote_average: movie.vote_average
-          };
+              return {
+                ...movie,
+                duration: formattedDuration,
+                overview: details.overview,
+                release_date: details.release_date,
+                vote_average: details.vote_average,
+                genres: details.genres.map((g: any) => g.id),
+              };
+            } catch (detailError) {
+              console.error(`Error fetching details for movie ${movie.id}:`, detailError);
+              return {
+                ...movie,
+                duration: 'N/A',
+              };
+            }
+          });
+          return await Promise.all(detailedMoviesPromises);
         };
 
-        setPopularMovies(popular.results.map(formatMovie));
-        setTopRatedMovies(topRated.results.map(formatMovie));
-        setUpcomingMovies(upcoming.results.map(formatMovie));
-        setNowPlayingMovies(nowPlaying.results.map(formatMovie));
-        setActionMovies(action.results.map(formatMovie));
-        setComedyMovies(comedy.results.map(formatMovie));
-        setDramaMovies(drama.results.map(formatMovie));
-        setHorrorMovies(horror.results.map(formatMovie));
-        setSciFiMovies(sciFi.results.map(formatMovie));
+        const formatMovie = (movie: any): Movie => ({
+          id: movie.id,
+          title: movie.title,
+          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          duration: movie.duration,
+          rating: movie.adult ? "18+" : "13+",
+          year: new Date(movie.release_date).getFullYear(),
+          genres: movie.genres || [],
+          match: Math.floor(movie.vote_average * 10),
+          description: movie.overview,
+          videoUrl: "",
+          poster_path: movie.poster_path,
+          backdrop_path: movie.backdrop_path,
+          overview: movie.overview,
+          release_date: movie.release_date,
+          vote_average: movie.vote_average,
+          type: 'movie'
+        });
+
+        setPopularMovies((await processMovies(popularMoviesData.results)).map(formatMovie));
+        setTopRatedMovies((await processMovies(topRatedMoviesData.results)).map(formatMovie));
+        setUpcomingMovies((await processMovies(upcomingMoviesData.results)).map(formatMovie));
+        setNowPlayingMovies((await processMovies(nowPlayingMoviesData.results)).map(formatMovie));
+        setActionMovies((await processMovies(actionMoviesData.results)).map(formatMovie));
+        setComedyMovies((await processMovies(comedyMoviesData.results)).map(formatMovie));
+        setDramaMovies((await processMovies(dramaMoviesData.results)).map(formatMovie));
+        setHorrorMovies((await processMovies(horrorMoviesData.results)).map(formatMovie));
+        setSciFiMovies((await processMovies(sciFiMoviesData.results)).map(formatMovie));
       } catch (error) {
         console.error('Error fetching movies:', error);
       } finally {

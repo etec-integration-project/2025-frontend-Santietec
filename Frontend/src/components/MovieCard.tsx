@@ -114,7 +114,7 @@ const MovieCard: React.FC<MovieProps> = ({ movie, onPlay }) => {
         onMouseLeave={handleMouseLeave}
         tabIndex={0}
         style={{ zIndex: expanded ? 50 : 1 }}
-        onClick={() => navigate(`/details/${movie.id}`)}
+        onClick={() => navigate(`/details/${movie.type || 'movie'}/${movie.id}`)}
       >
         {/* Main image or Trailer */}
         {expanded && trailerUrl ? (
@@ -167,7 +167,7 @@ const MovieCard: React.FC<MovieProps> = ({ movie, onPlay }) => {
               </button>
               <button 
                 className="border-2 border-gray-400 rounded-full p-2 hover:border-white transition-colors ml-auto"
-                onClick={(e) => { e.stopPropagation(); navigate(`/details/${movie.id}`); }}
+                onClick={(e) => { e.stopPropagation(); navigate(`/details/${movie.type || 'movie'}/${movie.id}`); }}
               >
                 <ChevronDown className="w-5 h-5" />
               </button>
@@ -184,7 +184,7 @@ const MovieCard: React.FC<MovieProps> = ({ movie, onPlay }) => {
               <span className="border border-gray-400 px-1">HD</span>
             </div>
             <div className="text-sm">
-              <span className="text-gray-400">{movie.genres.join(' • ')}</span>
+              <span className="text-gray-400">{movie.year}</span>
             </div>
           </div>
         )}
@@ -209,7 +209,7 @@ const MovieCard: React.FC<MovieProps> = ({ movie, onPlay }) => {
               <span className="border border-gray-400 px-1">HD</span>
             </div>
             <div className="text-xs mb-2">
-              <span className="text-gray-400">{movie.genres.join(' • ')}</span>
+              <span className="text-gray-400">{movie.year}</span>
             </div>
             <p className="text-sm mb-2">{movie.overview || movie.description}</p>
             {movie.year && (

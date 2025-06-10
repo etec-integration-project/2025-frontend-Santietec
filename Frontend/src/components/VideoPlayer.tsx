@@ -140,7 +140,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, title, description,
   return (
     <div 
       ref={playerRef}
-      className="fixed inset-0 bg-black z-50 flex items-center justify-center"
+      className="fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-black z-[1000] flex items-center justify-center"
       onMouseMove={handleMouseMove}
       onMouseLeave={() => !isYouTubeVideo && isPlaying && setShowControls(false)}
     >
@@ -179,22 +179,19 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, title, description,
             </button>
           )}
 
-          <div className="absolute bottom-0 left-0 right-0 p-4 space-y-4">
-            <div className="flex items-center space-x-2">
-              <input
-                type="range"
-                min={0}
-                max={duration}
-                value={currentTime}
-                onChange={handleSeek}
-                className="w-full h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-red-600 [&::-webkit-slider-thumb]:rounded-full"
-              />
-              <span className="text-sm">
-                {formatTime(currentTime)} / {formatTime(duration)}
-              </span>
-            </div>
+          <div className="absolute bottom-0 left-0 right-0 p-4">
+            <input
+              type="range"
+              min={0}
+              max={duration}
+              step={0.1}
+              value={currentTime}
+              onChange={handleSeek}
+              className="w-full h-1 bg-red-600 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:rounded-full"
+            />
+            <div className="flex justify-between items-center text-xs mt-2">
+              <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
 
-            <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 <button 
                   onClick={handlePlayPause}
@@ -218,27 +215,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, title, description,
                 >
                   <SkipForward className="w-6 h-6" />
                 </button>
-                <div className="flex items-center space-x-2 group">
-                  <button 
-                    onClick={() => setVolume(volume === 0 ? 1 : 0)}
-                    className="hover:text-red-600 transition-colors"
-                  >
-                    {volume === 0 ? (
-                      <VolumeX className="w-6 h-6" />
-                    ) : (
-                      <Volume2 className="w-6 h-6" />
-                    )}
-                  </button>
-                  <input
-                    type="range"
-                    min={0}
-                    max={1}
-                    step={0.1}
-                    value={volume}
-                    onChange={handleVolumeChange}
-                    className="w-20 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-red-600 [&::-webkit-slider-thumb]:rounded-full"
-                  />
-                </div>
               </div>
 
               <div className="flex items-center space-x-4">
